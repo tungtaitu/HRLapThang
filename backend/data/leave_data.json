@@ -1,0 +1,1207 @@
+[
+  {
+    "MSNV": "LT0012",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0013",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0015",
+    "Month": 6,
+    "PHEP": 42
+  },
+  {
+    "MSNV": "LT0016",
+    "Month": 5,
+    "PHEP": 21
+  },
+  {
+    "MSNV": "LT0019",
+    "Month": 5,
+    "PHEP": 1
+  },
+  {
+    "MSNV": "LT0023",
+    "Month": 5,
+    "PHEP": 22
+  },
+  {
+    "MSNV": "LT0024",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0030",
+    "Month": 5,
+    "PHEP": 7
+  },
+  {
+    "MSNV": "LT0026",
+    "Month": 5,
+    "PHEP": 11
+  },
+  {
+    "MSNV": "LT0027",
+    "Month": 5,
+    "PHEP": 19
+  },
+  {
+    "MSNV": "LT0028",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0031",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0032",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0033",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0035",
+    "Month": 5,
+    "PHEP": 48
+  },
+  {
+    "MSNV": "LT0037",
+    "Month": 5,
+    "PHEP": 4
+  },
+  {
+    "MSNV": "LT0042",
+    "Month": 5,
+    "PHEP": -0.5
+  },
+  {
+    "MSNV": "LT0055",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0054",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0001",
+    "Month": 5,
+    "PHEP": 31.5
+  },
+  {
+    "MSNV": "LT0004",
+    "Month": 5,
+    "PHEP": 27.5
+  },
+  {
+    "MSNV": "LT0002",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0076",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0078",
+    "Month": 5,
+    "PHEP": 1
+  },
+  {
+    "MSNV": "LT0080",
+    "Month": 5,
+    "PHEP": 39.5
+  },
+  {
+    "MSNV": "LT0057",
+    "Month": 5,
+    "PHEP": 30.5
+  },
+  {
+    "MSNV": "LT0059",
+    "Month": 5,
+    "PHEP": 4
+  },
+  {
+    "MSNV": "LT0060",
+    "Month": 5,
+    "PHEP": 22
+  },
+  {
+    "MSNV": "LT0061",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0068",
+    "Month": 5,
+    "PHEP": 21.5
+  },
+  {
+    "MSNV": "LT0087",
+    "Month": 5,
+    "PHEP": 6
+  },
+  {
+    "MSNV": "LT0074",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0085",
+    "Month": 5,
+    "PHEP": 28
+  },
+  {
+    "MSNV": "LT0093",
+    "Month": 5,
+    "PHEP": 4
+  },
+  {
+    "MSNV": "LT0096",
+    "Month": 5,
+    "PHEP": 23
+  },
+  {
+    "MSNV": "LT0109",
+    "Month": 5,
+    "PHEP": 21.5
+  },
+  {
+    "MSNV": "LT0111",
+    "Month": 5,
+    "PHEP": 29
+  },
+  {
+    "MSNV": "LT0122",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0123",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0110",
+    "Month": 5,
+    "PHEP": 3
+  },
+  {
+    "MSNV": "LT0114",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0144",
+    "Month": 5,
+    "PHEP": 12
+  },
+  {
+    "MSNV": "LT0147",
+    "Month": 5,
+    "PHEP": 11.5
+  },
+  {
+    "MSNV": "LT0150",
+    "Month": 5,
+    "PHEP": 0
+  },
+  {
+    "MSNV": "LT0124",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0164",
+    "Month": 7,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0173",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0175",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0174",
+    "Month": 5,
+    "PHEP": 23
+  },
+  {
+    "MSNV": "LT0181",
+    "Month": 5,
+    "PHEP": 14.5
+  },
+  {
+    "MSNV": "LT0182",
+    "Month": 5,
+    "PHEP": 9.5
+  },
+  {
+    "MSNV": "LT0191",
+    "Month": 5,
+    "PHEP": 12.5
+  },
+  {
+    "MSNV": "LT0186",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0187",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0195",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0198",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0208",
+    "Month": 5,
+    "PHEP": 28
+  },
+  {
+    "MSNV": "LT0213",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0214",
+    "Month": 5,
+    "PHEP": 33
+  },
+  {
+    "MSNV": "LT0240",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0241",
+    "Month": 5,
+    "PHEP": 22.5
+  },
+  {
+    "MSNV": "LT0244",
+    "Month": 5,
+    "PHEP": 11.5
+  },
+  {
+    "MSNV": "LT0222",
+    "Month": 5,
+    "PHEP": 30
+  },
+  {
+    "MSNV": "LT0257",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0268",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0258",
+    "Month": 5,
+    "PHEP": 8.5
+  },
+  {
+    "MSNV": "LT0275",
+    "Month": 5,
+    "PHEP": 9
+  },
+  {
+    "MSNV": "LT0276",
+    "Month": 5,
+    "PHEP": 20.5
+  },
+  {
+    "MSNV": "LT0277",
+    "Month": 5,
+    "PHEP": 19
+  },
+  {
+    "MSNV": "LT0288",
+    "Month": 5,
+    "PHEP": 14.5
+  },
+  {
+    "MSNV": "LT0291",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0295",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0300",
+    "Month": 5,
+    "PHEP": 5.5
+  },
+  {
+    "MSNV": "LT0308",
+    "Month": 5,
+    "PHEP": 20
+  },
+  {
+    "MSNV": "LT0323",
+    "Month": 5,
+    "PHEP": 11
+  },
+  {
+    "MSNV": "LT0322",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0331",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0333",
+    "Month": 5,
+    "PHEP": 4
+  },
+  {
+    "MSNV": "LT0340",
+    "Month": 5,
+    "PHEP": 0
+  },
+  {
+    "MSNV": "LT0341",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0349",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0352",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0363",
+    "Month": 5,
+    "PHEP": 14
+  },
+  {
+    "MSNV": "LT0361",
+    "Month": 5,
+    "PHEP": 4.5
+  },
+  {
+    "MSNV": "LT0215",
+    "Month": 5,
+    "PHEP": 4
+  },
+  {
+    "MSNV": "LT0368",
+    "Month": 5,
+    "PHEP": 27.5
+  },
+  {
+    "MSNV": "LT0344",
+    "Month": 5,
+    "PHEP": 18
+  },
+  {
+    "MSNV": "LT0366",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0367",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0362",
+    "Month": 5,
+    "PHEP": 10.5
+  },
+  {
+    "MSNV": "LT0375",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0376",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0374",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0373",
+    "Month": 5,
+    "PHEP": 12
+  },
+  {
+    "MSNV": "LT0384",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0391",
+    "Month": 5,
+    "PHEP": 3
+  },
+  {
+    "MSNV": "LT0385",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0390",
+    "Month": 5,
+    "PHEP": 0
+  },
+  {
+    "MSNV": "LT0388",
+    "Month": 5,
+    "PHEP": 14
+  },
+  {
+    "MSNV": "LT0394",
+    "Month": 5,
+    "PHEP": 4
+  },
+  {
+    "MSNV": "LT0395",
+    "Month": 5,
+    "PHEP": 0
+  },
+  {
+    "MSNV": "LT0396",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0397",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0398",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0400",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0401",
+    "Month": 5,
+    "PHEP": 7
+  },
+  {
+    "MSNV": "LT0402",
+    "Month": 5,
+    "PHEP": 5
+  },
+  {
+    "MSNV": "LT0406",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0407",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0408",
+    "Month": 5,
+    "PHEP": 13
+  },
+  {
+    "MSNV": "LT0410",
+    "Month": 5,
+    "PHEP": 15.5
+  },
+  {
+    "MSNV": "LT0412",
+    "Month": 5,
+    "PHEP": 0
+  },
+  {
+    "MSNV": "LT0424",
+    "Month": 5,
+    "PHEP": 14
+  },
+  {
+    "MSNV": "LT0425",
+    "Month": 5,
+    "PHEP": 4
+  },
+  {
+    "MSNV": "LT0428",
+    "Month": 5,
+    "PHEP": 28
+  },
+  {
+    "MSNV": "LT0430",
+    "Month": 5,
+    "PHEP": 16.5
+  },
+  {
+    "MSNV": "LT0431",
+    "Month": 5,
+    "PHEP": 3
+  },
+  {
+    "MSNV": "LT0423",
+    "Month": 5,
+    "PHEP": 20.5
+  },
+  {
+    "MSNV": " LT0449",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0458",
+    "Month": 5,
+    "PHEP": 20
+  },
+  {
+    "MSNV": "LT0418",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0441",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0436",
+    "Month": 5,
+    "PHEP": 7
+  },
+  {
+    "MSNV": "LT0437",
+    "Month": 5,
+    "PHEP": 31.5
+  },
+  {
+    "MSNV": "LT0439",
+    "Month": 5,
+    "PHEP": 31
+  },
+  {
+    "MSNV": "LT0445",
+    "Month": 5,
+    "PHEP": 19
+  },
+  {
+    "MSNV": "LT0475",
+    "Month": 5,
+    "PHEP": 0
+  },
+  {
+    "MSNV": "LT0488",
+    "Month": 5,
+    "PHEP": 12
+  },
+  {
+    "MSNV": "LT0476",
+    "Month": 5,
+    "PHEP": 3.5
+  },
+  {
+    "MSNV": "LT0471",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0481",
+    "Month": 5,
+    "PHEP": 38
+  },
+  {
+    "MSNV": "LT0466",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0478",
+    "Month": 5,
+    "PHEP": 39.5
+  },
+  {
+    "MSNV": "LT0489",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0483",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0482",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0501",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0497",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0522",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0513",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0509",
+    "Month": 5,
+    "PHEP": 35.5
+  },
+  {
+    "MSNV": "LT0516",
+    "Month": 5,
+    "PHEP": 12
+  },
+  {
+    "MSNV": "LT0515",
+    "Month": 5,
+    "PHEP": 8.5
+  },
+  {
+    "MSNV": "LT0517",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0518",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0507",
+    "Month": 5,
+    "PHEP": 19
+  },
+  {
+    "MSNV": "LT0514",
+    "Month": 5,
+    "PHEP": 30
+  },
+  {
+    "MSNV": "LT0548",
+    "Month": 5,
+    "PHEP": 22
+  },
+  {
+    "MSNV": "LT0530",
+    "Month": 5,
+    "PHEP": 28.5
+  },
+  {
+    "MSNV": "LT0549",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0540",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0546",
+    "Month": 5,
+    "PHEP": 7
+  },
+  {
+    "MSNV": "LT0558",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0559",
+    "Month": 5,
+    "PHEP": 20
+  },
+  {
+    "MSNV": "LT0563",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0519",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0189",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0588",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0589",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0577",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0581",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0146",
+    "Month": 5,
+    "PHEP": 13.5
+  },
+  {
+    "MSNV": "LT0579",
+    "Month": 5,
+    "PHEP": 19
+  },
+  {
+    "MSNV": "LT0473",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0590",
+    "Month": 5,
+    "PHEP": 39
+  },
+  {
+    "MSNV": "LT0338",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0339",
+    "Month": 5,
+    "PHEP": 27
+  },
+  {
+    "MSNV": "LT0602",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0591",
+    "Month": 5,
+    "PHEP": 34
+  },
+  {
+    "MSNV": "LT0593",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0594",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0598",
+    "Month": 5,
+    "PHEP": 22.5
+  },
+  {
+    "MSNV": "LT0613",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0616",
+    "Month": 5,
+    "PHEP": 2
+  },
+  {
+    "MSNV": "LT0202",
+    "Month": 5,
+    "PHEP": 30
+  },
+  {
+    "MSNV": "LT0615",
+    "Month": 5,
+    "PHEP": 7
+  },
+  {
+    "MSNV": "LT0609",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0610",
+    "Month": 5,
+    "PHEP": 11
+  },
+  {
+    "MSNV": "LT0617",
+    "Month": 5,
+    "PHEP": 20
+  },
+  {
+    "MSNV": "LT0619",
+    "Month": 5,
+    "PHEP": 28
+  },
+  {
+    "MSNV": "LT0630",
+    "Month": 5,
+    "PHEP": 0
+  },
+  {
+    "MSNV": "LT0520",
+    "Month": 5,
+    "PHEP": 0
+  },
+  {
+    "MSNV": "LT0634",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0636",
+    "Month": 5,
+    "PHEP": 24
+  },
+  {
+    "MSNV": "LT0640",
+    "Month": 5,
+    "PHEP": 32
+  },
+  {
+    "MSNV": "LT0632",
+    "Month": 5,
+    "PHEP": 30
+  },
+  {
+    "MSNV": "LT0447",
+    "Month": 5,
+    "PHEP": 14
+  },
+  {
+    "MSNV": "LT0641",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0645",
+    "Month": 5,
+    "PHEP": 13
+  },
+  {
+    "MSNV": "LT0643",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0646",
+    "Month": 5,
+    "PHEP": 13
+  },
+  {
+    "MSNV": "LT0618",
+    "Month": 5,
+    "PHEP": 0
+  },
+  {
+    "MSNV": "LT0422",
+    "Month": 5,
+    "PHEP": 0
+  },
+  {
+    "MSNV": "LT0644",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0647",
+    "Month": 5,
+    "PHEP": 4
+  },
+  {
+    "MSNV": "LT0648",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0649",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0651",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0652",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0654",
+    "Month": 5,
+    "PHEP": 15
+  },
+  {
+    "MSNV": "LT0655",
+    "Month": 5,
+    "PHEP": 0
+  },
+  {
+    "MSNV": "LT0656",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0657",
+    "Month": 5,
+    "PHEP": 14
+  },
+  {
+    "MSNV": "LT0658",
+    "Month": 5,
+    "PHEP": 12
+  },
+  {
+    "MSNV": "LT0660",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0661",
+    "Month": 5,
+    "PHEP": 0
+  },
+  {
+    "MSNV": "LT0665",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0666",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0667",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0668",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0672",
+    "Month": 5,
+    "PHEP": -0.5
+  },
+  {
+    "MSNV": "LT0673",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0674",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0670",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0671",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0676",
+    "Month": 5,
+    "PHEP": 14.5
+  },
+  {
+    "MSNV": "LT0677",
+    "Month": 5,
+    "PHEP": 16
+  },
+  {
+    "MSNV": "LT0678",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0680",
+    "Month": 5,
+    "PHEP": 3
+  },
+  {
+    "MSNV": "LT0682",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0684",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0686",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0697",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0696",
+    "Month": 5,
+    "PHEP": 0
+  },
+  {
+    "MSNV": "LT0689",
+    "Month": 5,
+    "PHEP": 0
+  },
+  {
+    "MSNV": "LT0683",
+    "Month": 5,
+    "PHEP": 3.5
+  },
+  {
+    "MSNV": "LT0695",
+    "Month": 5,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0691",
+    "Month": 5,
+    "PHEP": 0
+  },
+  {
+    "MSNV": "LT0449",
+    "Month": 5,
+    "PHEP": 40
+  },
+  {
+    "MSNV": "LT0700",
+    "Month": 5
+  },
+  {
+    "MSNV": "LT0701",
+    "Month": 5
+  },
+  {
+    "MSNV": "LT0702",
+    "Month": 5
+  },
+  {
+    "MSNV": "LT0706",
+    "Month": 5
+  },
+  {
+    "MSNV": "LT0694",
+    "Month": 5,
+    "PHEP": 0
+  },
+  {
+    "MSNV": "LT0732",
+    "Month": 7,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0734",
+    "Month": 7,
+    "PHEP": 8
+  },
+  {
+    "MSNV": "LT0723",
+    "Month": 7,
+    "PHEP": 8
+  },
+  {
+    "isForeigner": true,
+    "MSNV": "LT0223",
+    "Month": 6,
+    "PHEP": 32
+  },
+  {
+    "isForeigner": true,
+    "MSNV": "LT0226",
+    "Month": 6,
+    "PHEP": 35
+  },
+  {
+    "isForeigner": true,
+    "MSNV": "LT0324",
+    "Month": 6,
+    "PHEP": 40
+  },
+  {
+    "isForeigner": true,
+    "MSNV": "LT0328",
+    "Month": 6,
+    "PHEP": 77
+  }
+]

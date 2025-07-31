@@ -1,0 +1,82 @@
+[
+  {
+    "userID": "LT0471",
+    "credentialID": "CRjMCAGyIy_yCVEWjWf6IA",
+    "credentialPublicKey": "pQECAyYgASFYIAMdvbzpvHXsAf-8fsv4whNC11Zavi_mec_mY9tNFjMXIlggO_6mXH16XuDpMMLPXtqUgjKFW3y7_20Q1JorkBunDXI",
+    "counter": 0,
+    "transports": [
+      "hybrid",
+      "internal"
+    ]
+  },
+  {
+    "userID": "LT0214",
+    "credentialID": "TWS3EZ5iuuvfJNf_ifTOi-_1MYc",
+    "credentialPublicKey": "pQECAyYgASFYILMLD0VntLw7-ElIBC6KZHUNwYz0R1pmc54bxrvbTVokIlgg3Zy1Jz7HA_7R_4QCBDlwHBtbWXiBLBMyvViAYhYWjt0",
+    "counter": 0,
+    "transports": [
+      "internal",
+      "hybrid"
+    ]
+  },
+  {
+    "userID": "LT0363",
+    "credentialID": "niKYuI8VWATwp3OB3EROMw",
+    "credentialPublicKey": "pQECAyYgASFYIJ-gJA-lPJ1EDC0MdUp-FGWn1TXjZzPojjwsOTEbVTuzIlggXcE8Nt4nkBXsIVG-lqpijnNshMWcEuzFfPQUdGa5Ur0",
+    "counter": 0,
+    "transports": [
+      "internal",
+      "hybrid"
+    ]
+  },
+  {
+    "userID": "LT0363",
+    "credentialID": "JUWOf4l-TfF8iNk27jXRcw",
+    "credentialPublicKey": "pQECAyYgASFYIC4h856iV6OQVckt1sBTHKLaXVOymYoQccXM5O5EqpyxIlggFzZFbSoIPO6aIfxVRbb5vxXb96dFVqYaAtQKCuPUrmI",
+    "counter": 0,
+    "transports": [
+      "internal",
+      "hybrid"
+    ]
+  },
+  {
+    "userID": "LT0344",
+    "credentialID": "Ja2R_XGtEAeVOs3p1HoXFinPfq0",
+    "credentialPublicKey": "pQECAyYgASFYIHjMAgE30die6elHFNmRXiHvg4pwJPrpadKkkdmO1eeqIlggzXitSjUc_qKNxLja2DL88QiL5tkFOPtHHj4Q2kbvbOk",
+    "counter": 0,
+    "transports": [
+      "internal",
+      "hybrid"
+    ]
+  },
+  {
+    "userID": "LT0074",
+    "credentialID": "iZ4R7gwHuasmRQufjZRjKZxR3t4",
+    "credentialPublicKey": "pQECAyYgASFYIPwwbB4o3e72h0IrJD_Qs8wiEils_MmTbwTxmnQUXzSPIlgg-mO9CKS4yJRvDyhKNfNS-6NdgmStczS2SFQQMx9FK4Y",
+    "counter": 0,
+    "transports": [
+      "internal",
+      "hybrid"
+    ]
+  },
+  {
+    "userID": "LT0471",
+    "credentialID": "wfMLe7nAtWjYdWOf6fwHcitgQkHh4yPcKlkUgYzx8-M",
+    "credentialPublicKey": "pQECAyYgASFYIIlbh-Wo6TZ-W7w6F-4ow0cw-hXC5y0T9Lnph5tif1HZIlggF999-sq1cjD7jXNvW2peFXR0lfVca7jJWudhQgq6Gis",
+    "counter": 0,
+    "transports": [
+      "hybrid",
+      "internal"
+    ]
+  },
+  {
+    "userID": "LT0418",
+    "credentialID": "HL5zPxvYgd23Va_iTC6vVpVBS4w",
+    "credentialPublicKey": "pQECAyYgASFYIN_dZ90aE_QlTJ9qCMWsmRzJN9hnN59Tym2SQD_p3g_yIlggUiukcCPeg-QiMuFvy8zADNnOAqNeexIpv-ZqMX_Ii6U",
+    "counter": 0,
+    "transports": [
+      "internal",
+      "hybrid"
+    ]
+  }
+]

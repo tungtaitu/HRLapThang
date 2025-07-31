@@ -1,0 +1,4 @@
+# .gitignore file
+.env
+# Bỏ qua thư mục chứa chứng chỉ SSL
+cert/

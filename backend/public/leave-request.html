@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký Nghỉ Phép</title>
+    <!-- Sử dụng Tailwind CSS để giao diện đẹp và nhất quán -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Style để ẩn các phần tử */
+        .hidden-section {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-2xl">
+        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+            
+            <!-- Tiêu đề trang -->
+            <div class="text-center mb-6 pb-4 border-b">
+                <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">Công Cụ Đăng Ký Nghỉ Phép</h1>
+                <p class="text-gray-500 mt-1">Nhập mã nhân viên để đăng ký phép cho chính mình hoặc cho người khác.</p>
+            </div>
+
+            <!-- Form nhập MSNV -->
+            <div id="employeeLookup" class="mb-6">
+                 <label for="employeeIdInput" class="block text-sm font-medium text-gray-700 mb-1">Mã số nhân viên</label>
+                 <div class="flex items-center gap-2">
+                    <input type="text" id="employeeIdInput" placeholder="Nhập MSNV..."
+                           class="flex-grow w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    <button id="checkEmployeeBtn"
+                            class="px-5 py-2 font-semibold text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Kiểm tra
+                    </button>
+                 </div>
+                 <div id="lookupStatus" class="mt-2 text-sm text-center"></div>
+            </div>
+            
+            <!-- Form đăng ký chính, ban đầu sẽ được ẩn đi -->
+            <div id="mainFormContainer" class="hidden-section">
+                <!-- Khu vực hiển thị thông tin nhân viên và số phép còn lại -->
+                <div id="userInfo" class="mb-6 bg-blue-50 border-l-4 border-blue-500 text-blue-800 p-4 rounded-r-lg">
+                    <p><strong>Nhân viên:</strong> <span id="userName" class="font-semibold">Đang tải...</span></p>
+                    <p><strong>Mã số:</strong> <span id="userId" class="font-semibold">...</span></p>
+                    <p class="mt-2"><strong>Số giờ phép năm còn lại:</strong> <span id="remainingLeave" class="text-2xl font-bold">...</span> giờ</p>
+                </div>
+
+                <!-- Form đăng ký -->
+                <form id="leaveRequestForm" class="space-y-6">
+                    <div>
+                        <label for="leaveDate" class="block text-sm font-medium text-gray-700 mb-1">Ngày nghỉ</label>
+                        <input type="date" id="leaveDate" name="leaveDate" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+
+                    <div>
+                        <label for="leaveType" class="block text-sm font-medium text-gray-700 mb-1">Loại phép</label>
+                        <select id="leaveType" name="leaveType" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-white">
+                            <option value="E">Phép năm</option>
+                            <option value="A">Việc riêng</option>
+                            <option value="B">Phép bệnh</option>
+                            <option value="D">Phép tang</option>
+                            <!-- Thêm các loại phép khác nếu cần -->
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="leaveHours" class="block text-sm font-medium text-gray-700 mb-1">Số giờ nghỉ</label>
+                        <input type="number" id="leaveHours" name="leaveHours" min="0" step="0.5" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="Ví dụ: 8 (cho 1 ngày) hoặc 4 (cho nửa ngày)">
+                    </div>
+
+                    <div>
+                        <label for="reason" class="block text-sm font-medium text-gray-700 mb-1">Lý do</label>
+                        <textarea id="reason" name="reason" rows="3"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="Nhập lý do nghỉ phép (không bắt buộc)"></textarea>
+                    </div>
+
+                    <!-- Nút gửi và thông báo -->
+                    <div class="flex items-center justify-between pt-4 border-t">
+                        <button type="submit" id="submitButton"
+                            class="w-full px-6 py-3 font-semibold text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:bg-gray-400">
+                            Gửi Đơn
+                        </button>
+                    </div>
+                     <div id="statusMessage" class="mt-4 text-center"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIG ---
+        const API_URL = 'http://localhost:5000'; 
+        let remainingHoursCache = 0; 
+
+        // --- ELEMENTS ---
+        const employeeIdInput = document.getElementById('employeeIdInput');
+        const checkEmployeeBtn = document.getElementById('checkEmployeeBtn');
+        const lookupStatus = document.getElementById('lookupStatus');
+        const mainFormContainer = document.getElementById('mainFormContainer');
+        const userIdSpan = document.getElementById('userId');
+        const userNameSpan = document.getElementById('userName');
+        const remainingLeaveSpan = document.getElementById('remainingLeave');
+        const form = document.getElementById('leaveRequestForm');
+        const statusMessage = document.getElementById('statusMessage');
+        const submitButton = document.getElementById('submitButton');
+
+        /**
+         * Lấy thông tin người dùng và số phép từ API
+         * @param {string} employeeId Mã nhân viên
+         */
+        async function fetchUserData(employeeId) {
+            lookupStatus.textContent = 'Đang tìm kiếm...';
+            mainFormContainer.classList.add('hidden-section'); 
+            const currentYear = new Date().getFullYear();
+            try {
+                // Thử gọi API để lấy thông tin nhân viên
+                const payrollResponse = await fetch(`${API_URL}/api/payroll/${employeeId}/${currentYear}-01`, {credentials: 'include'});
+                if (!payrollResponse.ok) throw new Error('Không tìm thấy nhân viên hoặc có lỗi xảy ra.');
+                const payrollData = await payrollResponse.json();
+                if(!payrollData || !payrollData.employeeInfo || !payrollData.employeeInfo.hoTen) {
+                     throw new Error(`Không tìm thấy thông tin cho mã nhân viên ${employeeId}.`);
+                }
+                userNameSpan.textContent = payrollData.employeeInfo.hoTen;
+                userIdSpan.textContent = employeeId;
+
+                // Nếu tìm thấy nhân viên, tiếp tục lấy dữ liệu phép
+                const leaveResponse = await fetch(`${API_URL}/api/holidays/${employeeId}/${currentYear}`, {credentials: 'include'});
+                if(!leaveResponse.ok) throw new Error('Không thể tải dữ liệu phép năm.');
+                
+                const leaveData = await leaveResponse.json();
+                remainingHoursCache = leaveData.summary.remaining || 0;
+                remainingLeaveSpan.textContent = remainingHoursCache;
+                
+                mainFormContainer.classList.remove('hidden-section');
+                lookupStatus.textContent = '';
+                statusMessage.textContent = '';
+            } catch (error) {
+                console.error('Lỗi khi tải dữ liệu:', error);
+                lookupStatus.innerHTML = `<p class="text-red-600">${error.message}</p>`;
+            }
+        }
+        
+        // Gắn sự kiện cho nút "Kiểm tra"
+        checkEmployeeBtn.addEventListener('click', () => {
+            const employeeId = employeeIdInput.value.trim().toUpperCase(); // Chuẩn hóa MSNV
+            employeeIdInput.value = employeeId;
+            if (employeeId) {
+                fetchUserData(employeeId);
+            } else {
+                lookupStatus.innerHTML = `<p class="text-red-600">Vui lòng nhập mã nhân viên.</p>`;
+            }
+        });
+        
+        // Cho phép nhấn Enter để kiểm tra
+        employeeIdInput.addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                checkEmployeeBtn.click();
+            }
+        });
+
+        // Xử lý khi form được gửi đi
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            submitButton.disabled = true;
+            submitButton.textContent = 'Đang xử lý...';
+            statusMessage.textContent = '';
+            const formData = new FormData(form);
+            const leaveData = {
+                userId: userIdSpan.textContent,
+                leaveDate: formData.get('leaveDate'),
+                leaveType: formData.get('leaveType'),
+                leaveHours: parseFloat(formData.get('leaveHours')),
+                reason: formData.get('reason')
+            };
+            if (leaveData.leaveType === 'E' && leaveData.leaveHours > remainingHoursCache) {
+                statusMessage.innerHTML = `<p class="text-red-600 font-semibold">Lỗi: Số giờ nghỉ (${leaveData.leaveHours}) vượt quá số phép năm còn lại (${remainingHoursCache}).</p>`;
+                submitButton.disabled = false;
+                submitButton.textContent = 'Gửi Đơn';
+                return;
+            }
+            try {
+                const response = await fetch(`${API_URL}/api/leave-request`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify(leaveData)
+                });
+                const result = await response.json();
+                if (!response.ok) {
+                    throw new Error(result.message || 'Có lỗi xảy ra.');
+                }
+                statusMessage.innerHTML = `<p class="text-green-600 font-semibold">${result.message}</p>`;
+                form.reset();
+                fetchUserData(userIdSpan.textContent);
+            } catch (error) {
+                statusMessage.innerHTML = `<p class="text-red-600 font-semibold">Lỗi: ${error.message}</p>`;
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Gửi Đơn';
+            }
+        });
+        
+        // ======================= BẮT ĐẦU SỬA LỖI =======================
+        // Hàm này sẽ chạy ngay khi trang được tải xong
+        window.onload = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userIdFromUrl = urlParams.get('userId');
+
+            // Nếu có userId từ URL (tức là người dùng bấm nút từ trang chính)
+            // thì tự động điền vào ô input và bấm nút "Kiểm tra"
+            if (userIdFromUrl) {
+                employeeIdInput.value = userIdFromUrl;
+                checkEmployeeBtn.click(); // Tự động kích hoạt sự kiện click để tải dữ liệu
+            }
+        };
+        // ======================== KẾT THÚC SỬA LỖI ========================
+    </script>
+</body>
+</html>
+```
+
+Tôi đã thêm lại đoạn mã `window.onload`. Đoạn mã này sẽ kiểm tra xem có mã nhân viên trong URL hay không. Nếu có, nó sẽ tự động điền mã đó vào ô nhập liệu và kích hoạt nút "Kiểm tra" để tải dữ liệu và hiển thị form đăng ký.
+
+Bạn chỉ cần cập nhật file `public/leave_request.html` với nội dung trên là chức năng sẽ hoạt động chính x
