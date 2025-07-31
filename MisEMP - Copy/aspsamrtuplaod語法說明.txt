@@ -1,0 +1,91 @@
+''''''''建立並準備使用上傳檔案元件 
+Set mySmartUpload = Server.CreateObject("aspSmartUpload.SmartUpload") 
+''''''''允許上傳檔之副檔名及檔案格式限制，此例我設定成只能傳gif等圖檔 
+mySmartUpload.Allowed用戶lesList = "gif,GIF,jpg,JPG" 
+''''''''上傳檔之檔案大小上限，此例我設定10k 
+mySmartUpload.MaxFileSize = 10000 
+''''''''上傳檔之檔案大小總合之上限，此例我設定100k 
+mySmartUpload.TotalMaxFileSize = 100000 
+''''''''開始上傳 
+mySmartUpload.Upload 
+''''''''對每個檔案分別動作 
+For each file In mySmartUpload.Files 
+''''''''存檔動作，目錄路徑要設定你自己的網站位址下的目錄，此例為您的主網頁目錄下的upload目錄 
+file.SaveAs(Server.MapPath(".") & "/upload/" & file.FileName) 
+''''''''檔案表單欄位、檔案大小、檔名、副檔名、路徑、等等 
+file.Name、file.Size、file.FileName、file.FileExt、file.FilePathName、...... 
+next 
+''''''''所有上傳檔案大小總計 
+mySmartUpload.Files.TotalBytes 
+''''''''取得上傳表格中之其他欄位內容，此例為取得表格中「您的大名」之內容。 
+mySmartUpload.Form("myname") 
+''''''''結束SmartUpload作業 
+set mySmartUpload=nothing 
+
+錯誤代碼一覽及說明
+
+Objet SMARTUPLOAD 
+1005 Index is out of range. 檔案的索引值超出範圍 
+1010 The extension of the file is not allowed to be uploaded. 檔案型態不符合設定 
+1015 The extension of the file is denied to be uploaded. 檔案型態不符合設定 
+1020 Unable to save file from the DataBase. 無法從資料庫將檔案儲存 
+1025 There is no specified destination file. 目的檔案不存在 
+1030 The Form cannot be saved in the specified file. 
+1035 Physical path is denied. 無法存取檔案路徑 
+1040 File not found. 檔案不存在 
+
+Objet FILE 
+1105 The maximum size by file is exceeded. 上傳檔案大小超過上限 
+1110 The maximum size of files is exceeded. 所有上傳檔案大小總合超過上限 
+1115 Index is out of range. 檔案的索引值超出範圍 
+1120 File can''''''''t be saved. 無法儲存檔案 
+1125 Physical path is denied. 無法存取檔案路徑 
+1130 Unable to save file in the DataBase. 無法將檔案存到資料庫 
+1135 Directory''''''''s name is invalid or does not exist. 檔案路徑不存在 
+1140 There is no specified destination file. 目的檔案不存在 
+
+Collection FILES 
+1205 Files'''''''' name is invalid or does not exist. 檔案名稱錯誤 
+
+Collection FORM 
+1305 Form''''''''s index is invalid or does not exist. 表單變數的索引值超出範圍 
+
+aspSmartUpload範例程式
+http://www.hihosting.hinet.net/download/UploadSample.zip
+
+
+處理用戶端上傳, 一般來講有五種方式:
+
+1.使用純 html 網頁供用戶上傳
+2.提供 java 程式供用戶上傳
+3.提供 ActiveX 元件供用戶上傳
+4.提供應用程式讓用戶使用並上傳
+5.提供 Flash 程式供用戶上傳
+
+上面這五種方式其實都可以做到多檔案上傳. (選多個, 一次傳一個)
+由於 ActiveX 元件有安裝較困難的問題, 因此並不建議您將 ActiveX
+元件做為唯一的上傳方式 ;-) 言歸正傳, 如果你要選用 ActiveX 上傳
+的話, 由於元件基本上是沒有原始碼的, 因此你要選文字訊息可以自
+定義的元件才行. 就我個人的經驗, 目前做的最好的上傳元件是:
+
+Aurigma Image Uploader (同時有 ActiveX 及 Java 版)
+http://www.aurigma.com/Products/ImageUploader/
+
+當然, 這一類的元件其實很多, 你也可以翻翻 google 看看其他的元件:
+http://www.google.com.tw/search?hl=zh-TW&&q=activex+http+uploader
+
+windows 2003 server 上之IIS 6.0上 上傳檔案大小限制 的問題
+
+可以試著去改IIS 6.0的metabase
+檔案在Windows/system32/inetsrv目錄底下
+名稱為MetaBase.xml
+搜尋AspMaxRequestEntityAllowed這個字串
+預設應該為204800(單位是byte)
+試試看改大一點有沒有用
+不過如果你IIS沒有打開在執行時可直接編輯metabase這個選項的話
+可能需要先把IIS停掉
+改完檔案
+再啟動IIS
+本文章來自於神魂顛倒論壇  http://bbs.flash2u.com.tw 
+原文網址:http://bbs.flash2u.com.tw/dispbbs_58_9966_33.html
+

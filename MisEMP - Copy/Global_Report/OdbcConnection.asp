@@ -1,0 +1,26 @@
+<%
+Set mainReportTableCollection = Session("oRpt").Database.Tables
+For Each mnTable in mainReportTableCollection
+  With mnTable.ConnectionProperties
+   .Item("user ID") = "sa"
+   .Item("Password") = "yfymisbox"
+   .Item("DSN") = "yfynet"
+   .Item("Database") ="yfynet"
+  End With
+Next
+
+
+if subreport1="Y" then
+	Set subReportOne = session("oRpt").OpenSubReport("Titles")
+	Set subReportOneTablesCollection = subReportOne.Database.Tables
+	For Each subTable in SubReportOneTablesCollection
+	  With subTable.ConnectionProperties
+	   .Item("user ID") = "sa"
+	   .Item("Password") = "yfymisbox"
+	   .Item("DSN") = "yfynet"
+	   .Item("Database") ="yfynet"
+	  End With
+	Next
+end if
+
+%>

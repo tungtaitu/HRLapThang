@@ -1,0 +1,803 @@
+BODY
+{
+    BACKGROUND-COLOR: #DCF1F1;
+    COLOR: black;
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 9pt;
+    MARGIN-LEFT: 0px;
+    MARGIN-TOP: 0px;
+    overflow:auto;
+    scrollbar-face-color:#FFFFFF;
+	scrollbar-shadow-color:#C3C3C4;
+	scrollbar-highlight-color:#ffffff;
+	scrollbar-3dlight-color:#C3C3C4;
+	scrollbar-darkshadow-color:#ffffff;
+	scrollbar-track-color:#FFFFFF;
+	scrollbar-arrow-color:#cccccc;
+}
+TABLE
+{
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 9pt;
+}
+.SourceTitlePanel 
+{
+    BACKGROUND-COLOR: #cccc99;
+    COLOR: #006699;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 14pt;
+    FONT-WEIGHT: bolder;
+    HEIGHT: 30px;
+    LETTER-SPACING: 1pt;
+    PADDING: 6px;
+}
+.SourcePanel 
+{
+	COLOR: black;
+	FONT-FAMILY: 'Lucida Console';
+	FONT-SIZE: 9pt;
+	PADDING: 4px;
+}
+
+.abort
+{
+    COLOR: red;
+    PADDING-LEFT: 10px
+}
+.info
+{
+    COLOR: green;
+    FONT-FAMILY: Verdana, Arial
+}
+.smalltext
+{
+    COLOR: gray;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 9pt;
+    LINE-HEIGHT: 140%
+}
+TD.StockHeading
+{
+    BORDER-BOTTOM: black 1px inset;
+    BACKGROUND-COLOR: white;
+    COLOR: black;
+    FONT-FAMILY: Tahoma, Arial, Verdana;
+    FONT-SIZE: xx-small;
+    FONT-WEIGHT: bold;
+    PADDING-LEFT: 3pt;
+    PADDING-RIGHT: 0pt
+}
+TD.StockHeadingAmt
+{
+    BORDER-BOTTOM: black 1px inset;
+    BACKGROUND-COLOR: white;
+    COLOR: black;
+    FONT-FAMILY: Tahoma, Arial, Verdana;
+    FONT-SIZE: xx-small;
+    FONT-WEIGHT: bold;
+    PADDING-LEFT: 3pt;
+    PADDING-RIGHT: 0pt;
+    TEXT-ALIGN: right
+}
+TD.StockItem
+{
+    BORDER-RIGHT: silver thin solid;
+    FONT-FAMILY: Tahoma, Arial, Verdana;
+    FONT-SIZE: xx-small;
+    HEIGHT: 14pt;
+    PADDING-LEFT: 3pt;
+    PADDING-RIGHT: 0pt
+}
+TD.StockItemAmt
+{
+    BORDER-RIGHT: silver thin solid;
+	FONT-FAMILY: Tahoma, Arial, Verdana;
+    FONT-SIZE: xx-small;
+    HEIGHT: 14pt;
+    PADDING-LEFT: 3pt;
+    PADDING-RIGHT: 0pt;
+    TEXT-ALIGN: right
+}
+TD.StockSpace
+{
+    BACKGROUND-COLOR: #999999;
+    FONT-FAMILY: Tahoma, Arial;
+    FONT-SIZE: x-small
+}
+TD.StockItemNoBorder
+{
+	BORDER-TOP: #ffffe8 thick solid;
+	BORDER-RIGHT: #FFCC00 thin solid;
+    FONT-FAMILY: Tahoma, Arial, Verdana;
+    FONT-SIZE: xx-small;
+    HEIGHT: 14pt;
+    PADDING-LEFT: 3pt;
+    PADDING-RIGHT: 0pt
+}
+TD.StockItemNoBorderAmt
+{
+	BORDER-TOP: #ffffe8 thick solid;
+	BORDER-RIGHT: #FFCC00 thin solid;	
+    FONT-FAMILY: Tahoma, Arial, Verdana;
+    FONT-SIZE: xx-small;
+    HEIGHT: 14pt;
+    PADDING-LEFT: 3pt;
+    PADDING-RIGHT: 0pt;
+    TEXT-ALIGN: right
+}
+SPAN.BulletNumber
+{
+    COLOR: #cc9933;
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: medium;
+    FONT-WEIGHT: bold;
+}
+.button
+{
+    COLOR: #006666;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 15px;
+    FONT-WEIGHT: bold
+}
+.section
+{
+    COLOR: #cc6600;
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 16pt;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-TOP: 5px
+}
+.loginsection
+{
+    COLOR: #ffcc66;
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 16pt;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-TOP: 5px
+}
+H1
+{
+    COLOR: midnightblue;
+    FONT-SIZE: 10pt
+}
+H2
+{
+    COLOR: #cc9933;
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: medium;
+    FONT-WEIGHT: bold;    
+}
+H3
+{
+    COLOR: #cc9933;
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: medium;
+    FONT-WEIGHT: bold;    
+}
+TD.navmenu
+{
+    COLOR: chocolate;
+    CURSOR: default;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: bolder
+}
+
+TD.title
+{
+    BACKGROUND-COLOR: #cccc99;
+    COLOR: #006699;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 16pt;
+    FONT-WEIGHT: bolder;
+    HEIGHT: 30px;
+    LETTER-SPACING: 1pt;
+    PADDING-RIGHT: 20px;
+    TEXT-ALIGN: right
+}
+INPUT
+{
+    FONT-SIZE: 9pt
+}
+TD.menuitemover
+{
+    COLOR: white;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 9pt;
+    PADDING-LEFT: 10px
+}
+TD.menuheading
+{
+	font-weight: bold;
+	font-size: 10pt;
+	cursor: default;
+	color: chocolate;
+	font-style: italic;
+	font-family: Verdana, Arial;
+}
+
+SPAN.error
+{
+	COLOR:red;
+	FONT-FAMILY: Verdana, Arial;
+}
+A
+{
+	font-weight: normal;
+	color: #7A1A7A;/*firebrick*/
+	font-family: Verdana, Arial;
+	text-decoration: none;
+}
+A:visited
+{
+	color: #663333;
+}
+A:active
+{
+	color: lawngreen;
+}
+A:hover
+{
+	font-weight: bold;
+	color: tomato;
+	background-color: #ffffcc;
+}
+A.error
+{
+	COLOR:red;
+    TEXT-DECORATION: none;
+	FONT-FAMILY: Verdana, Arial;
+}
+#error A:visited
+{
+    COLOR: red;
+}
+#error A:active
+{
+    COLOR: red;
+    TEXT-DECORATION: underline;
+}
+#error A:hover
+{
+    COLOR: red;
+    TEXT-DECORATION: underline;
+}
+Table.topmenu TD
+{
+	/*padding-left: 40px;*/
+	font-weight: bold;
+	font-size: 11pt;
+	padding-bottom: 0px;
+	color: red;
+	margin-right: 10px;
+	font-family: Verdana;
+}
+Table.topmenu A
+{
+    COLOR: #000000;
+    TEXT-DECORATION: none;
+}
+Table.topmenu A:visited
+{
+    COLOR: #000000;
+}
+Table.topmenu A:active
+{
+    COLOR: #000000;
+    TEXT-DECORATION: underline;
+}
+Table.topmenu A:hover
+{
+    COLOR: black;
+    TEXT-DECORATION: underline;
+}
+#menu A
+{
+    COLOR: white;
+    TEXT-DECORATION: none;
+}
+#menu A:visited
+{
+    COLOR: white;
+}
+#menu A:active
+{
+    COLOR: #006699;
+    TEXT-DECORATION: underline;
+}
+#menu A:hover
+{
+    COLOR: black;
+    TEXT-DECORATION: underline;
+}
+
+A.menuitem
+{
+    COLOR: black;
+    PADDING-LEFT: 10px;
+    TEXT-ALIGN: right;
+}
+A.menuitem:hover
+{
+    COLOR: #FFCC00;
+    PADDING-LEFT: 10px;
+    TEXT-ALIGN: right;
+}
+
+TD.menuitem
+{
+	padding-left: 10px;
+	font-size: 9pt;
+	color: limegreen;
+	text-align: right;
+}
+
+TD.ColumnHeader
+{
+    BACKGROUND-COLOR: gray;
+    COLOR: white;
+    FONT-FAMILY: Verdana, Arial
+}
+TD.ColumnHeaderAmt
+{
+    BACKGROUND-COLOR: gray;
+    COLOR: white;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-ALIGN: right;
+}
+TD.logo
+{
+    BACKGROUND-COLOR: #006699;
+    BACKGROUND-IMAGE: url(images/FMBanner.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: no-repeat;
+    TEXT-ALIGN: right;
+}
+
+TD.loginBanner
+{
+    BACKGROUND-COLOR: #006699;
+    BACKGROUND-IMAGE: url(images/Login_FMBanner1.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: no-repeat;
+    TEXT-ALIGN: right;
+}
+   
+TD.hundred
+{
+    BACKGROUND-COLOR: #006699;
+    BACKGROUND-IMAGE: url(images/HundredShares.jpg);
+    BACKGROUND-POSITION: right top;
+    BACKGROUND-REPEAT: no-repeat;
+    TEXT-ALIGN: right;
+} 
+
+.DefaultBg
+{
+	BACKGROUND-COLOR: #DCF1F1;
+    BACKGROUND-IMAGE: url(../../images/DefaultBg.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: no-repeat;
+    TEXT-ALIGN: left;
+} 
+
+.LoginBg
+{
+	BACKGROUND-COLOR: #DCF1F1;
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: no-repeat;
+    TEXT-ALIGN: left;
+} 
+
+.LoginTop
+{
+    BACKGROUND-IMAGE: url(../../images/pcc_02.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: no-repeat;
+    TEXT-ALIGN: left;
+} 
+
+.LoginMenu
+{
+    BACKGROUND-COLOR: #DCF1F1;
+    BACKGROUND-IMAGE: url(../../images/pcc_04.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: no-repeat;
+    TEXT-ALIGN: left;
+} 
+
+TD.topLeft1
+{
+    BACKGROUND-IMAGE: url(../../images/pcc_01.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: no-repeat;
+    TEXT-ALIGN: left;
+} 
+
+TD.topLeft2
+{
+    BACKGROUND-IMAGE: url(../../images/pcc_02.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: no-repeat;
+    TEXT-ALIGN: left;
+} 
+TD.topLeft3
+{
+    BACKGROUND-COLOR: #F7FBFF;
+    BACKGROUND-IMAGE: url(../../images/pcc_03.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: repeat-x;
+    TEXT-ALIGN: left;
+} 
+TD.topLeft4
+{
+	BACKGROUND-COLOR: #DCF1F1;
+    BACKGROUND-IMAGE: url(../../images/bg-earth.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: repeat-x;
+    TEXT-ALIGN: left;
+} 
+
+TD.topMiddle
+{
+    BACKGROUND-COLOR: #F7FBFF;
+    BACKGROUND-IMAGE: url(../../images/pcc_03.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: no-repeat;
+    TEXT-ALIGN: right;
+}
+
+TD.topRight
+{
+    BACKGROUND-COLOR: #F7FBFF;
+    BACKGROUND-IMAGE: url(../../images/pcc_04.gif);
+    BACKGROUND-POSITION: left top;
+    TEXT-ALIGN: left;
+} 
+TD.treebg{BACKGROUND-COLOR: #E6F5F5;}
+
+.ActDocTB
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	border:0;
+	BACKGROUND-COLOR: #000000;
+}
+.ActDocTD1
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	text-indent:8pt;
+	padding-left:2pt;
+	BACKGROUND-COLOR: #eeeeee;
+}
+.ActDocTD2
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	BACKGROUND-COLOR: #aaaadd;
+}
+.ActDocTD3
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	padding-left:2pt;
+	BACKGROUND-COLOR: #ffffff;
+}
+
+.GridTB
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	BACKGROUND-COLOR: #FFFFFF;
+	border:1pt solid #000000;
+}
+
+.DListHeaderTD
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	BACKGROUND-COLOR: #aaaadd;
+}
+.DListItemTD
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	padding-left:2pt;
+	BACKGROUND-COLOR: #ffffff;
+}
+.DListAlternatingTD
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	padding-left:2pt;
+	BACKGROUND-COLOR: #eeeeee;
+}
+.DGridTD
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	padding-left:2pt;
+	padding-right:2pt;
+	padding-bottom:2pt;
+	padding-top:2pt;
+	BACKGROUND-COLOR: #ffffff;
+}
+.GridItem
+{
+	padding-left:5pt;
+	padding-right:5pt;
+	padding-bottom:5pt;
+	padding-top:5pt;
+	line-height:12pt;
+}
+.off
+{
+	display:none
+}
+.TDShowHeader
+{
+	font-size: 8pt;
+	font-family: Verdana;
+	BACKGROUND-COLOR: #FFC3A2;
+}
+.TDShowItem
+{
+	font-size: 8pt;
+	font-family: Verdana;
+	padding-left:3pt;
+	padding-right:3pt;
+	padding-bottom:3pt;
+	padding-top:3pt;
+	line-height:10pt;
+	BACKGROUND-COLOR: #ffffff;
+}
+
+.TDShowDiss
+{
+	font-size: 8pt;
+	font-family: Verdana;
+	BACKGROUND-COLOR: #d9e0ee;
+}
+
+.TxtStyle{
+	color: #000000;
+	background: #FFFFFF;
+	border: 1px groove #000000;/*平面solid*/
+	height:20px;
+}
+
+.TextareaStyle {
+	color: #000000;
+	background: #ffffff;
+	border: 1px solid #000000;
+	height:300px;
+	scrollbar-face-color:#C9DBDC;
+	scrollbar-shadow-color:#C3C3C4;
+	scrollbar-highlight-color:#ffffff;
+	scrollbar-3dlight-color:#C3C3C4;
+	scrollbar-darkshadow-color:#ffffff;
+	scrollbar-track-color:#e0e4ff;
+	scrollbar-arrow-color:#ffc575;
+}
+
+A.GridHeaderLink:link {
+	FONT-SIZE: 10pt; LINE-HEIGHT: 15pt; TEXT-DECORATION:none}
+A.GridHeaderLink:visited {
+	FONT-SIZE: 10pt; LINE-HEIGHT: 15pt; TEXT-DECORATION:none}
+A.GridHeaderLink:hover {
+	FONT-SIZE: 10pt; LINE-HEIGHT: 15pt; TEXT-DECORATION: underline}
+A.GridHeaderLink:active {
+	FONT-SIZE: 10pt; LINE-HEIGHT: 15pt; TEXT-DECORATION: underline}
+	
+A.TextLink:link {
+	FONT-SIZE: 9pt; color: #000000; TEXT-DECORATION:none}
+A.TextLink:visited {
+	FONT-SIZE: 9pt; color: #000000; TEXT-DECORATION:none}
+A.TextLink:hover {
+	FONT-SIZE: 9pt; color: #800000; TEXT-DECORATION: underline}
+A.TextLink:active {
+	FONT-SIZE: 9pt; color: #800000; TEXT-DECORATION: underline}
+	
+
+.bfffa00c {	FONT-WEIGHT: bold; BACKGROUND: #ffffff; COLOR: #aa0000; TEXT-ALIGN: center}
+.eee000 {background:#eeeeee}
+.fff000 {BACKGROUND: #ffffff}
+.ffC000 {BACKGROUND: #FFC3A2}
+.ffd000 {BACKGROUND: #fffde3}
+.808000 {BACKGROUND: #808080}
+.f3f000 {BACKGROUND: #F3F3F3}
+.c4c000 {BACKGROUND: #c4c4c4}
+.f2f000 {BACKGROUND: #f2f2f2}
+.CCC000 {BACKGROUND: #CCCCCC}
+.EBE000 {BACKGROUND: #EBEBEB}
+.f8f000 {BACKGROUND: #f8f8f8}
+.DDE000 {BACKGROUND: #D9D9E6}
+.EEF000 {BACKGROUND: #EEEEF5}
+
+.9FC000 {BACKGROUND: #9fc84d}
+.E2F000 {BACKGROUND: #e2fdc7}
+.D5D000 {BACKGROUND: #d5d549}
+.E7E000 {BACKGROUND: #e7e7a4}
+.D9D000 {BACKGROUND: #d9d974}
+.A8B000 {BACKGROUND: #a8b9ed}
+.D3D000 {BACKGROUND: #d3dbf2}
+.BDC000 {BACKGROUND: #bdcbf7}
+.000000 {BACKGROUND: #000000}
+
+
+.FactBG
+{
+	background: url(Images/bg-earth.gif);
+}
+.Button {
+	color: #000000;
+	background: #cccccc;
+	border: 1px solid #000000;
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#FFFFFFFF', EndColorStr='#FFCCCCCC');
+	FONT-SIZE: 9pt;	
+	padding:0 0 0 2pt;
+	font-weight:lighter;
+	font-family:verdana;
+	height:20px;
+	cursor: hand;
+}	
+.border
+{
+	border-right: #015155 1px solid;
+	border-top: #015155 1px solid;
+	border-left: #015155 1px solid;
+	border-bottom: #015155 1px solid;
+}
+
+.MaintainAreaItem {BACKGROUND: #99cccc}
+.MaintainAreaTr {BACKGROUND: #000000}
+.MaintainAreaTd {BACKGROUND: #D5E2E2}
+.MaintainAreaTd1 {BACKGROUND: #DCE2D3}
+
+A.A1:visited
+{
+	color: purple;
+}
+A.A1:active
+{
+	color: lawngreen;
+}
+A.A1:hover
+{
+	font-weight: bold;
+	color: tomato;
+	background-color: #E3E3E3;
+}
+A.A1.error
+{
+	COLOR:red;
+    TEXT-DECORATION: none;
+	FONT-FAMILY: Verdana, Arial;
+}
+
+/*新版首頁之Style*/
+.font01
+	{	font-family:Arial;
+		font-weight:bold;
+		color:#B20808;
+		font-size:9pt}
+		
+.font02
+	{	font-family:Arial;
+		color:#B20808;
+		font-size:9pt}
+		
+.font03
+	{	font-family:Arial;
+		color:#888888;
+		font-size:8pt}
+		
+.font04
+	{	font-family:Arial;
+		color:#ffffff;
+		font-size:10pt;
+		letter-spacing:2;
+		padding-top:5}
+		
+.font05
+	{	font-family:新細明體;
+		font-size:9pt;
+		color:#000000;
+		/*letter-spacing:1;*/
+		text-align:right}
+		
+.font06
+	{	font-family:新細明體;
+		font-size:9pt;
+		color:#3A3A3A;
+		letter-spacing:1;
+		text-align:center}
+		
+.font07
+	{	font-family:Arial;
+		color:#B20808;
+		font-size:9pt;
+		cursor:hand}
+		
+.inputTxt01
+	{	font-family:Arial;
+		color:#333333;
+		font-size:9pt}
+		
+.inputTxt02
+	{	font-family:新細明體;
+		/*background-color:#E5E5E5;*/
+		font-size:9pt;
+		color:#000000;
+		border:1 inset #808080;
+		width:160}
+		
+.inputBtn01
+	{	font-family:新細明體;
+		font-size:9pt;
+		color:#403E3E;
+		background-image:url(../../images/btn_7.gif) ;
+		border:0 solid #ffffff; 
+		width:47; 
+		height:20;
+		background-repeat:no-repeat;
+		background-color:#54B0F7;
+		cursor:hand }
+		
+.inputBtn02
+	{	font-family:新細明體;
+		font-size:9pt;
+		color:#403E3E;
+		background-image:url(../../images/btn_8.gif) ;
+		border:0 solid #ffffff; 
+		width:71; 
+		height:20;
+		background-repeat:no-repeat;
+		background-color:#54B0F7;
+		cursor:hand }
+	
+.inputBtn03
+	{	font-family:新細明體;
+		font-size:9pt;
+		color:#403E3E;
+		background-image:url(../../images/btn_9.gif) ;
+		border:0 solid #ffffff; 
+		width:101; 
+		height:20;
+		background-repeat:no-repeat;
+		background-color:#54B0F7;
+		cursor:hand }
+.button {
+	color: #020D61;
+	background: #B7EBF6;
+	/*border: 1px solid #637C94;*/
+	border-top:none;
+	border-left:none;
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#FFFFFFFF', EndColorStr='#89DDF0');
+	FONT-SIZE: 9pt;	
+	padding:0 0 0 2pt;
+	font-weight:lighter;
+	font-family:verdana;
+	height:20px;
+	cursor: hand;
+}
+
+.cssTextBox
+{
+	
+	FONT-FAMILY: Verdana, Arial;
+    FONT-WEIGHT:lighter;
+    color:Black;
+    border-style:window-inset;
+    border-color:#0F7FBD;
+    border-width:1pt;
+    height:19;
+}
+
+
+

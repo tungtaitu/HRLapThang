@@ -1,0 +1,491 @@
+<%@LANGUAGE=VBSCRIPT CODEPAGE=65001%>
+<!-- #include file = "../../GetSQLServerConnection.fun" -->
+<!-- #include file="../../ADOINC.inc" -->
+<%
+'on error resume next
+session.codepage="65001"
+SELF = "empfileedit"
+
+Set conn = GetSQLServerConnection()
+Set rs = Server.CreateObject("ADODB.Recordset")
+
+yymmstr = request("yymm")
+country = request("country")
+whsno = trim(request("whsno"))
+unitno = trim(request("unitno"))
+groupid = trim(request("groupid"))
+zuno = trim(request("zuno"))
+job = trim(request("job"))
+QUERYX = trim(request("empid1"))
+shift = request("shift")
+
+
+gTotalPage = 1
+PageRec = 10    'number of records per page
+TableRec = 50    'number of fields per record
+'if day(date())<=10 then
+'	if month(date()) = 12 then
+'		yymm = year(date())- 1 & right("00" & month(date()) , 2 )
+'	else
+'		yymm = year(date())& right("00" & month(date())-1 , 2 )
+'	end if
+'else
+'	yymm = year(date())& right("00" & month(date()), 2 )
+'end if
+yymm = yymmstr  
+nowmonth = year(date())&right("00"&month(date()),2) 
+
+calcdt = left(YYMM,4)&"/"& right(yymm,2)&"/01"
+
+if right(yymmstr,2) mod 2 = 0 then 
+	ccx=35
+else
+	ccx=36
+end if 		
+
+if session("netuser")="LSARY" and yymmstr < nowmonth then  
+	sql="select * from   "&_
+		"(select  empid  WORKEMPID ,(toth+h1+h2) as Tj, (h1+h2)-"& cdbl(ccx)&" as OverJ, 0 as forget, 0 as latefor,  *  "&_
+		"from  empworkper  where  yymm='"& yymmstr &"'  ) a "&_
+		"LEFT JOIN   View_EMPFILE  B ON B.EMPID =A.WORKEMPID   "&_ 
+		"left join ( select  empid  WORKEMPIDx , sum( isnull(b3,0) ) b3 from EMPWORK  WHERE  YYMM='"& yymmstr &"'  group by empid   "&_
+		") c on c.WORKEMPIDx = a.WORKEMPID "&_
+		"where isnull(b.status,'')<>'D' and (isnull(b.outdate,'')='' or b.outdate>'"& calcdt &"'  )  "&_
+		"and  whsno like '%"& whsno &"%' and unitno like '%"& unitno &"%'  and b.groupid like '%"& groupid &"%'  "&_
+		"and country like '%"& country &"%' and job like '%"& job &"%' and b.empid like '%"& QUERYX &"%' "
+else 
+	sql=" SELECT  (h1+h2)-"& cdbl(ccx)&" as OverJ,  toth as tj, *  FROM   "&_
+		"(   select  empid  WORKEMPID ,  sum(isnull(toth,0)) toth, sum(isnull( forget ,0 )) forget, "&_
+		"sum( isnull(  latefor,0) ) latefor  , sum( isnull( kzhour,0) ) kzhour , sum( isnull( h1,0) ) h1,  "&_
+		"sum( isnull( h2,0) ) h2,  sum( isnull( h3,0) ) h3 , sum( isnull(b3,0) ) b3 , "&_
+		"sum( isnull(jiaa,0) ) jiaA, sum( isnull(jiaB,0) ) jiaB, sum( isnull(jiaC,0) ) jiaC, "&_
+		"sum( isnull(jiaD,0) ) jiaD, sum( isnull(jiaE,0) ) jiaE, sum( isnull(jiaF,0) ) jiaF, "&_
+		"sum( isnull(jiaG,0) ) jiaG, sum( isnull(jiaH,0) ) jiaH  "&_
+		"from   EMPWORK  WHERE  YYMM='"& yymmstr &"'  group by empid   "&_
+		") A "&_
+		"LEFT JOIN   View_EMPFILE  B ON B.EMPID =A.WORKEMPID   "&_
+		"where isnull(b.status,'')<>'D' and (isnull(b.outdate,'')='' or b.outdate>'"& calcdt &"'  )  "&_
+		"and  whsno like '%"& whsno &"%' and unitno like '%"& unitno &"%'  and b.groupid like '%"& groupid &"%'  "&_
+		"and country like '%"& country &"%' and job like '%"& job &"%' and b.empid like '%"& QUERYX &"%' "
+end if 
+
+if shift<>"" and shift<>"D" then
+	sql=sql&"and  b.shift='"& shift &"' "
+end if
+if shift="D" then
+	sql=sql&"and  isnull(b.shift,'')='' "
+end if
+sql=sql&"order by b.empid "
+	
+response.write sql
+'response.end
+if request("TotalPage") = "" or request("TotalPage") = "0" then
+	CurrentPage = 1
+	rs.Open SQL, conn, 3, 3
+	IF NOT RS.EOF THEN
+		rs.PageSize = PageRec
+		RecordInDB = rs.RecordCount
+		TotalPage = rs.PageCount
+		gTotalPage = TotalPage
+	END IF
+
+	Redim tmpRec(gTotalPage, PageRec, TableRec)   'Array
+
+	for i = 1 to TotalPage
+	 for j = 1 to PageRec
+		if not rs.EOF then
+			for k=1 to TableRec-1
+				tmpRec(i, j, 0) = "no"
+				tmpRec(i, j, 1) = trim(rs("empid"))
+				tmpRec(i, j, 2) = trim(rs("empnam_cn"))
+				tmpRec(i, j, 3) = trim(rs("empnam_vn"))
+				tmpRec(i, j, 4) = rs("country")
+				tmpRec(i, j, 5) = rs("nindat")
+				tmpRec(i, j, 6) = rs("job")
+				tmpRec(i, j, 7) = rs("whsno")
+				tmpRec(i, j, 8) = rs("unitno")
+				tmpRec(i, j, 9)	=RS("groupid")
+				tmpRec(i, j, 10)=RS("zuno")
+				tmpRec(i, j, 11)=RS("wstr")
+				tmpRec(i, j, 12)=RS("ustr")
+				tmpRec(i, j, 13)=RS("gstr")
+				tmpRec(i, j, 14)=RS("zstr")
+				tmpRec(i, j, 15)=RS("jstr")
+				tmpRec(i, j, 16)=RS("cstr")
+				tmpRec(i, j, 17)=RS("autoid")
+				IF RS("zuno")="XX" THEN
+					tmpRec(i, j, 18)=""
+				ELSE
+					tmpRec(i, j, 18)=RS("zuno")
+				END IF
+				if session("netuser")="LSARY" then    				
+					if cdbl(rs("overJ"))> 0 then 
+						tmpRec(i, j, 19)=(cdbl(RS("tj")))-cdbl(rs("overJ"))
+					else
+						tmpRec(i, j, 19)=cdbl(RS("toth"))+cdbl(RS("h1"))+cdbl(RS("h2"))
+					end if 	
+					tmpRec(i, j, 20)=cdbl(RS("forget"))
+					tmpRec(i, j, 21)=cdbl(RS("latefor"))
+					tmpRec(i, j, 22)=cdbl(RS("kzhour")) 
+					if  cdbl(rs("overJ"))> 0 then 
+						tmpRec(i, j, 23)=cdbl(RS("h1"))- cdbl(rs("overJ"))
+					else
+						tmpRec(i, j, 23)=cdbl(RS("h1"))
+					end if 	
+					tmpRec(i, j, 24)=cdbl(RS("h2"))
+					tmpRec(i, j, 25)=cdbl(RS("h3"))
+					tmpRec(i, j, 26)="0"
+					tmpRec(i, j, 27)=cdbl(RS("jiaa"))
+					tmpRec(i, j, 28)=cdbl(RS("jiab"))
+					tmpRec(i, j, 29)=cdbl(RS("jiac"))
+					tmpRec(i, j, 30)=cdbl(RS("jiad"))
+					tmpRec(i, j, 31)=cdbl(RS("jiae"))
+					tmpRec(i, j, 32)=cdbl(RS("jiaf"))
+					tmpRec(i, j, 33)=cdbl(RS("jiag"))
+					tmpRec(i, j, 34)=cdbl(RS("jiah")) 
+				else
+					tmpRec(i, j, 19)=cdbl(RS("totH"))
+					tmpRec(i, j, 20)=cdbl(RS("forget"))
+					tmpRec(i, j, 21)=cdbl(RS("latefor"))
+					tmpRec(i, j, 22)=cdbl(RS("kzhour"))
+					tmpRec(i, j, 23)=cdbl(RS("h1"))
+					tmpRec(i, j, 24)=cdbl(RS("h2"))
+					tmpRec(i, j, 25)=cdbl(RS("h3"))
+					tmpRec(i, j, 26)=cdbl(RS("b3"))
+					tmpRec(i, j, 27)=cdbl(RS("jiaa"))
+					tmpRec(i, j, 28)=cdbl(RS("jiab"))
+					tmpRec(i, j, 29)=cdbl(RS("jiac"))
+					tmpRec(i, j, 30)=cdbl(RS("jiad"))
+					tmpRec(i, j, 31)=cdbl(RS("jiae"))
+					tmpRec(i, j, 32)=cdbl(RS("jiaf"))
+					tmpRec(i, j, 33)=cdbl(RS("jiag"))
+					tmpRec(i, j, 34)=cdbl(RS("jiah")) 				
+				end if 	
+				tmpRec(i, j, 35)=trim(RS("outdate"))
+
+			next
+			rs.MoveNext
+		else
+			exit for
+		end if
+	 next
+
+	 if rs.EOF then
+		rs.Close
+		Set rs = nothing
+		exit for
+	 end if
+	next
+	Session("empfileeditN") = tmpRec
+else
+	TotalPage = cint(request("TotalPage"))
+	'StoreToSession()
+	CurrentPage = cint(request("CurrentPage"))
+	RecordInDB  = REQUEST("RecordInDB")
+	tmpRec = Session("empfileeditN")
+
+	Select case request("send")
+	     Case "FIRST"
+		      CurrentPage = 1
+	     Case "BACK"
+		      if cint(CurrentPage) <> 1 then
+			     CurrentPage = CurrentPage - 1
+		      end if
+	     Case "NEXT"
+		      if cint(CurrentPage) <= cint(TotalPage) then
+			     CurrentPage = CurrentPage + 1
+		      end if
+	     Case "END"
+		      CurrentPage = TotalPage
+	     Case Else
+		      CurrentPage = 1
+	end Select
+end if
+
+
+FUNCTION FDT(D)
+	Response.Write YEAR(D)&"/"&RIGHT("00"&MONTH(D),2)&"/"&RIGHT("00"&DAY(D),2)
+
+END FUNCTION
+
+'nowmonth = year(date())&right("00"&month(date()),2)
+nowmonth = yymm
+calcmonth = nowmonth
+'if month(date())="01" then
+'	if day(date())>11 then
+'		calcmonth = nowmonth
+'	else
+'		calcmonth = year(date()-1)&"12"
+'	end if
+'else
+'	if day(date())>11 then
+'		calcmonth = nowmonth
+'	else
+'		calcmonth =  year(date())&right("00"&month(date())-1,2)
+'	end if
+'end if 
+
+  
+cDatestr=CDate(LEFT(YYMM,4)&"/"&RIGHT(YYMM,2)&"/01")
+days = DAY(cDatestr+(32-DAY(cDatestr))-DAY(cDatestr+(32-DAY(cDatestr))))   
+ 
+SQL=" SELECT * FROM YDBMCALE WHERE CONVERT(CHAR(6),DAT,112)  ='"& YYMM &"' AND  DATEPART( DW,DAT ) ='1'  "
+Set rsTT = Server.CreateObject("ADODB.Recordset")
+RSTT.OPEN SQL, CONN, 3, 3
+IF NOT RSTT.EOF THEN
+	HHCNT = CDBL(RSTT.RECORDCOUNT)
+ELSE
+	HHCNT = 0
+END IF
+SET RSTT=NOTHING
+
+'RESPONSE.WRITE HHCNT &"<br>"
+'RESPONSE.END
+ 
+MMDAYS = CDBL(days) -cdbl(HHCNT)
+%>
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<meta http-equiv="refresh">
+<link rel="stylesheet" href="../../Include/style.css" type="text/css">
+<link rel="stylesheet" href="../../Include/style2.css" type="text/css">
+<SCRIPT ID=clientEventHandlersVBS LANGUAGE=vbscript>
+<!--
+'-----------------enter to next field
+function enterto()
+	if window.event.keyCode = 13 then window.event.keyCode =9
+end function
+
+function f()
+	<%=self%>.empid1.focus()
+end function
+
+function datachg()
+	<%=self%>.action="empwork.fore.asp?totalpage=0"
+	<%=self%>.submit
+end function
+
+-->
+</SCRIPT>
+</head>
+<body  topmargin="5" leftmargin="5"  marginwidth="0" marginheight="0"  onkeydown="enterto()" onload="f()">
+<form name="<%=self%>" method="post" action="empwork.fore.asp">
+<INPUT TYPE=HIDDEN NAME="UID" VALUE=<%=SESSION("NETUSER")%>>
+<INPUT TYPE=hidden NAME=TotalPage VALUE="<%=TotalPage%>">
+<INPUT TYPE=hidden NAME=CurrentPage VALUE="<%=CurrentPage%>">
+<INPUT TYPE=hidden NAME=PageRec VALUE="<%=PageRec%>">
+<INPUT TYPE=hidden NAME=RecordInDB VALUE="<%=RecordInDB%>">
+<INPUT TYPE=hidden NAME=gTotalPage VALUE="<%=gTotalPage%>">
+<table width="460" border="0" cellspacing="0" cellpadding="0">
+	<tr><TD >
+	<img border="0" src="../../image/icon.gif" align="absmiddle">
+	員工差勤作業<font color=blue> 統計年月:<INPUT NAME=yymm VALUE="<%=yymmstr%>" size=8 readonly >
+	<INPUT NAME=mdays VALUE="<%=MMDAYS%>" size=5 readonly >
+	</font></TD>
+	</tr>
+</table>
+<hr size=0	style='border: 1px dotted #999999;' align=left width=500>
+<TABLE WIDTH=700 CLASS=FONT9 BORDER=0>
+	<TR height=25 >
+		<TD nowrap align=right>國籍:</TD>
+		<TD >
+			<select name=country  class=font9 onchange="datachg()">
+				<option value=""></option>
+				<%SQL="SELECT * FROM BASICCODE WHERE FUNC='country' ORDER BY SYS_TYPE "
+				SET RST = CONN.EXECUTE(SQL)
+				WHILE NOT RST.EOF
+				%>
+				<option value="<%=RST("SYS_TYPE")%>" <%IF  RST("SYS_TYPE")=country THEN %> SELECTED <%END IF%> ><%=RST("SYS_VALUE")%></option>
+				<%
+				RST.MOVENEXT
+				WEND
+				%>
+			</SELECT>
+			<%SET RST=NOTHING %>
+		</TD>
+		<TD   nowrap align=right>處/所</TD>
+		<TD >
+			<select name=unitno  class=font9 onchange="datachg()">
+				<option value=""></option>
+				<%SQL="SELECT * FROM BASICCODE WHERE FUNC='unit' and sys_type<>'AAA' ORDER BY SYS_TYPE "
+				SET RST = CONN.EXECUTE(SQL)
+				WHILE NOT RST.EOF
+				%>
+				<option value="<%=RST("SYS_TYPE")%>" <%IF  RST("SYS_TYPE")=unitno THEN %> SELECTED <%END IF%>><%=RST("SYS_VALUE")%></option>
+				<%
+				RST.MOVENEXT
+				WEND
+				%>
+			</SELECT>
+			<%SET RST=NOTHING %>
+		</TD>
+		<TD nowrap align=right >組/部門</TD>
+		<TD >
+			<select name=GROUPID  class=font9  onchange="datachg()">
+				<option value=""></option>
+				<%SQL="SELECT * FROM BASICCODE WHERE FUNC='GROUPID' and sys_type <>'AAA' ORDER BY SYS_TYPE "
+				SET RST = CONN.EXECUTE(SQL)
+				WHILE NOT RST.EOF
+				%>
+				<option value="<%=RST("SYS_TYPE")%>" <%IF  RST("SYS_TYPE")=GROUPID THEN %> SELECTED <%END IF%> ><%=RST("SYS_VALUE")%></option>
+				<%
+				RST.MOVENEXT
+				WEND
+				%>
+			</SELECT>
+			<%SET RST=NOTHING %>
+		</TD>
+		<!--TD nowrap align=right></TD>?瑞?<TD  >
+			<select name=JOB  class=font9 onchange="datachg()" >
+				<option value=""></option>
+				<%SQL="SELECT * FROM BASICCODE WHERE FUNC='LEV' ORDER BY SYS_TYPE "
+				SET RST = CONN.EXECUTE(SQL)
+				WHILE NOT RST.EOF
+				%>
+				<option value="<%=RST("SYS_TYPE")%>"  <%IF RST("SYS_TYPE")=JOB THEN %> SELECTED <%END IF%> ><%=RST("SYS_VALUE")%></option>
+				<%
+				RST.MOVENEXT
+				WEND
+				%>
+			</SELECT>
+			<%SET RST=NOTHING %>
+		</TD-->
+		<TD nowrap align=right >員工編號</TD>
+		<TD  >
+			<INPUT NAME=empid1 SIZE=10 CLASS=INPUTBOX value="<%=QUERYX%>">
+
+		</TD>
+		<TD nowrap align=right >�Z�O</TD>
+		<TD  >
+		 	<select name=shift class=font9 onchange="datachg()" >
+			 	<option value="" <%if shift="" then %> selected<%end if%>>----</option>
+			 	<option value="ALL" <%if shift="ALL" then %> selected<%end if%>>ALL</option>
+			 	<option value="A" <%if shift="A" then %> selected<%end if%>>Ca A</option>
+			 	<option value="B" <%if shift="B" then %> selected<%end if%>>Ca B</option>
+			 	<option value="D" <%if shift="D" then %> selected<%end if%>>?嗡?</option>
+		 	</select>
+		 	<INPUT TYPE=BUTTON NAME=BTN VALUE="(S)查詢" CLASS=BUTTON onclick="datachg()" onkeydown="datachg()">
+		</TD>
+	</TR>
+</TABLE>
+
+<hr size=0	style='border: 1px dotted #999999;' align=left width=500>
+<!-------------------------------------------------------------------->
+<table width=580 class=font9 cellpadding="0" >
+	<tr BGCOLOR="LightGrey" height=22>
+		<TD width=50 nowrap align=center rowspan=2>工號</TD>
+ 		<TD width=190 nowrap align=center rowspan=2>姓名</TD>
+ 		<TD width=80 align=center nowrap rowspan=2>到職日</TD>
+		<TD align=center rowspan=2>總工時</TD>
+		<TD align=center rowspan=2>忘刷</TD>
+		<TD align=center rowspan=2>遲早</TD>
+		<TD align=center rowspan=2>曠職</TD>
+		<td align=center colspan=4 >加班(單位:小時)</td>
+		<td colspan=8 align=center >休假(單位:小時)</td>
+	</tr>
+	<tr BGCOLOR="LightGrey" height=22>
+		<td align=center>一般</td>
+		<td align=center>休息</td>
+		<td align=center>假日</td>
+		<td align=center>夜班</td>
+		<td align=center>公假</td>
+		<td align=center>年假</td>
+		<td align=center>事假</td>
+		<td align=center>病假</td>
+		<td align=center>工傷</td>
+		<td align=center>婚假</td>
+		<td align=center>喪假</td>
+		<td align=center>產假</td>
+	</tr>
+	<%for CurrentRow = 1 to PageRec
+		IF CurrentRow MOD 2 = 0 THEN
+			WKCOLOR="LavenderBlush"
+		ELSE
+			WKCOLOR=""
+		END IF
+		'if tmpRec(CurrentPage, CurrentRow, 1) <> "" then
+	%>
+	<TR BGCOLOR=<%=WKCOLOR%> >
+		<TD align=center><a href='vbscript:oktest(<%=tmpRec(CurrentPage, CurrentRow, 17)%>)'><%=tmpRec(CurrentPage, CurrentRow, 1)%></a></TD>
+ 		<TD><a href='vbscript:oktest(<%=tmpRec(CurrentPage, CurrentRow, 17)%>)'><%=tmpRec(CurrentPage, CurrentRow, 2)%>&nbsp;<font class=txt8VN><%=tmpRec(CurrentPage, CurrentRow, 3)%></font></a></TD>
+ 		<TD align=center><%=tmpRec(CurrentPage, CurrentRow, 5)%><BR><font color=red class=txt8><%=tmpRec(CurrentPage, CurrentRow, 35)%></font></TD>
+ 		<TD align=center><input name=toth size=5 class="readonly8s"   value="<%=tmpRec(CurrentPage, CurrentRow, 19)%>" style="text-align:right"></TD>
+ 		<TD align=center><input name=forget size=3 class="readonly8s" readonly  value="<%=tmpRec(CurrentPage, CurrentRow, 20)%>" style="text-align:right;color:<%if cdbl(tmpRec(CurrentPage, CurrentRow, 20))>0 then %>RoyalBlue<%else%>White<%end if%>"></TD>
+ 		<TD align=center><input name=latefor size=3 class="readonly8s" readonly  value="<%=tmpRec(CurrentPage, CurrentRow, 21)%>" style="text-align:right;color:<%if cdbl(tmpRec(CurrentPage, CurrentRow, 21))>0 then %>RoyalBlue<%else%>White<%end if%>"></TD>
+ 		<TD align=center><input name=kzhour size=3 class="readonly8s" readonly  value="<%=tmpRec(CurrentPage, CurrentRow, 22)%>" style="text-align:right;color:<%if cdbl(tmpRec(CurrentPage, CurrentRow, 22))=0 then %>white<%else%>red<%end if%>"></TD>
+ 		<TD align=center><input name=h1 size=3 class="readonly8s" readonly  value="<%=tmpRec(CurrentPage, CurrentRow, 23)%>" style="text-align:right;color:<%if cdbl(tmpRec(CurrentPage, CurrentRow, 23))>0 then %>black<%else%>White<%end if%>"></TD>
+ 		<TD align=center><input name=h2 size=3 class="readonly8s" readonly  value="<%=tmpRec(CurrentPage, CurrentRow, 24)%>" style="text-align:right;color:<%if cdbl(tmpRec(CurrentPage, CurrentRow, 24))>0 then %>black<%else%>White<%end if%>"></TD>
+ 		<TD align=center><input name=h3 size=3 class="readonly8s" readonly  value="<%=tmpRec(CurrentPage, CurrentRow, 25)%>" style="text-align:right;color:<%if cdbl(tmpRec(CurrentPage, CurrentRow, 25))>0 then %>black<%else%>White<%end if%>"></TD>
+ 		<TD align=center><input name=b3 size=3 class="readonly8s" readonly  value="<%=tmpRec(CurrentPage, CurrentRow, 26)%>" style="text-align:right;color:<%if cdbl(tmpRec(CurrentPage, CurrentRow, 26))>0 then %>black<%else%>White<%end if%>"></TD>
+ 		<TD align=center><input name=jiag size=3 class="readonly8s" readonly  value="<%=tmpRec(CurrentPage, CurrentRow, 33)%>" style="text-align:right;color:<%if cdbl(tmpRec(CurrentPage, CurrentRow, 33))>0 then %>black<%else%>White<%end if%>"></TD>
+ 		<TD align=center><input name=jiae size=3 class="readonly8s" readonly  value="<%=tmpRec(CurrentPage, CurrentRow, 31)%>" style="text-align:right;color:<%if cdbl(tmpRec(CurrentPage, CurrentRow, 31))>0 then %>black<%else%>White<%end if%>"></TD>
+ 		<TD align=center><input name=jiaa size=3 class="readonly8s" readonly  value="<%=tmpRec(CurrentPage, CurrentRow, 27)%>" style="text-align:right;color:<%if cdbl(tmpRec(CurrentPage, CurrentRow, 27))>0 then %>black<%else%>White<%end if%>"></TD>
+ 		<TD align=center><input name=jiab size=3 class="readonly8s" readonly  value="<%=tmpRec(CurrentPage, CurrentRow, 28)%>" style="text-align:right;color:<%if cdbl(tmpRec(CurrentPage, CurrentRow, 28))>0 then %>black<%else%>White<%end if%>"></TD>
+ 		<TD align=center><input name=jiah size=3 class="readonly8s" readonly  value="<%=tmpRec(CurrentPage, CurrentRow, 34)%>" style="text-align:right;color:<%if cdbl(tmpRec(CurrentPage, CurrentRow, 34))>0 then %>black<%else%>White<%end if%>"></TD>
+ 		<TD align=center><input name=jiac size=3 class="readonly8s" readonly  value="<%=tmpRec(CurrentPage, CurrentRow, 29)%>" style="text-align:right;color:<%if cdbl(tmpRec(CurrentPage, CurrentRow, 29))>0 then %>black<%else%>White<%end if%>"></TD>
+ 		<TD align=center><input name=jiad size=3 class="readonly8s" readonly  value="<%=tmpRec(CurrentPage, CurrentRow, 30)%>" style="text-align:right;color:<%if cdbl(tmpRec(CurrentPage, CurrentRow, 30))>0 then %>black<%else%>White<%end if%>"></TD>
+ 		<TD align=center><input name=jiaf size=3 class="readonly8s" readonly  value="<%=tmpRec(CurrentPage, CurrentRow, 32)%>" style="text-align:right;color:<%if cdbl(tmpRec(CurrentPage, CurrentRow, 32))>0 then %>black<%else%>White<%end if%>"></TD>
+
+
+	</TR>
+	<%next%>
+
+</table>
+
+
+<TABLE border=0 width=600 class=font9 >
+<tr>
+    <td align="CENTER" height=40 width=70%>
+
+	<% If CurrentPage > 1 Then %>
+		<input type="submit" name="send" value="FIRST" class=button>
+		<input type="submit" name="send" value="BACK" class=button>
+	<% Else %>
+		<input type="submit" name="send" value="FIRST" disabled class=button>
+		<input type="submit" name="send" value="BACK" disabled class=button>
+	<% End If %>
+	<% If cint(CurrentPage) < cint(TotalPage) Then %>
+		<input type="submit" name="send" value="NEXT" class=button>
+		<input type="submit" name="send" value="END" class=button>
+	<% Else %>
+		<input type="submit" name="send" value="NEXT" disabled class=button>
+		<input type="submit" name="send" value="END" disabled class=button>
+	<% End If %>　
+	PAGE:<%=CURRENTPAGE%> / <%=TOTALPAGE%> , COUNT:<%=RECORDINDB%>
+	</td>
+	<td align=right>
+		<input type="button" name="send" value="(M)回主畫面" class=button onclick=BACKMAIN()>
+	</td>
+</TR>
+</TABLE>
+</form>
+
+
+
+
+</body>
+</html>
+
+<script language=vbscript>
+function BACKMAIN()
+	open "empwork.fore1.asp" , "_self"
+end function
+
+function oktest(N)
+	tp=<%=self%>.totalpage.value
+	cp=<%=self%>.CurrentPage.value
+	rc=<%=self%>.RecordInDB.value
+	'open "empworkB.fore.asp?empautoid="& N &"&yymm="&"<%=calcmonth%>", "_self"
+	if <%=self%>.uid.value="LSARY" then 
+		open "empworkBT.fore.asp?empautoid="& N &"&YYMM="&"<%=calcmonth%>" &"&Ftotalpage=" & tp &"&Fcurrentpage=" & cp &"&FRecordInDB=" & rc , "_blank" , "top=10, left=10, width=700, scrollbars=yes"
+	else
+		open "empworkB.fore.asp?empautoid="& N &"&YYMM="&"<%=calcmonth%>" &"&Ftotalpage=" & tp &"&Fcurrentpage=" & cp &"&FRecordInDB=" & rc , "_blank" , "top=10, left=10, width=700, scrollbars=yes"
+	end if	
+end function
+
+</script>
+

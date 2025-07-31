@@ -1,0 +1,93 @@
+<%@LANGUAGE=VBSCRIPT CODEPAGE=950%>
+<%
+
+%>
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<meta http-equiv="refresh">
+<link rel="stylesheet" href="../Include/style.css" type="text/css">
+<link rel="stylesheet" href="../Include/style2.css" type="text/css">
+</head>
+<body  topmargin="0" leftmargin="5"  marginwidth="0" marginheight="0" >
+<table width="460" border="0" cellspacing="0" cellpadding="0">
+	<tr><TD>人事薪資系統</TD></tr>
+</table>
+<hr size=0	style='border: 1px dotted #999999;' align=left width=500>
+<BR>
+<table width=500><tr><td>
+	<table width=400 align=center>	
+		<tr height=50>
+			<td>
+				<input type=button name=btn value="A.基本資料建檔" class=btnB onclick="dataclick(1)">
+			</td>
+			<td>
+				<input type=button name=btn value="B.員工基本資料" class=btnB onclick="dataclick(2)">
+			</td>
+
+		</tr>
+
+		<tr height=50>
+			<td>
+				<input type=button name=btn value="C.薪資管理作業" class=btnB onclick="dataclick(7)">
+			</td>
+			<td>
+				<input type=button name=btn value="D.員工差勤作業" class=btnB onclick="dataclick(3)" >
+			</td>
+		</tr>
+		<tr height=50 >
+			<td>
+				<input type=button name=btn value="E.員工請假作業" class=btnB onclick="dataclick(4)" >
+			</td>
+			<td>
+				<input type=button name=btn value="F.報表資料查詢" class=btnB  onclick="dataclick(6)" >
+			</td>
+		</tr>	
+		<tr height=50 >
+			<td>
+				<input type=button name=btn value="G.接收卡鐘資料" class=btnB onclick="dataclick(5)" >
+			</td>
+			<td>
+				<input type=button name=btn value="H.事故管理作業" class=btnB onclick="dataclick(8)">
+			</td>
+		</tr>
+	</table>
+
+
+</td></tr></table>
+
+</body>
+</html>
+
+
+<script language=vbs>
+	function dataclick(a)
+		if a = 1 then
+			open "../function.asp?program_id=A" , "contents"
+		elseif a = 2 then			
+			'open "../functionB.asp" , "contents"
+			open "../function.asp?program_id=B" , "contents"
+		elseif a = 3 then
+			'open "empworkHour/empwork.asp" , "_self"
+			'open "../functionD.asp" , "contents"
+			open "../function.asp?program_id=D" , "contents"
+		elseif a = 4 then
+			'open "holiday/empholiday.asp" , "_self"
+			open "../functionE.asp" , "contents"
+		elseif a = 5 then
+			'open "AcceptCaTime/main.asp" , "_self"
+			open "../functionG.asp" , "contents"
+		elseif a = 6 then
+			'open "../report/main.asp" , "_self"
+			open "../functionF.asp" , "contents"
+		elseif a = 7 then
+			'open "../functionC.asp" , "contents"
+			open "../function.asp?program_id=C" , "contents"
+		elseif a = 8 then
+			open "../functionH.asp" , "contents"
+		end if
+	end function
+</script>

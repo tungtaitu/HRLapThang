@@ -1,0 +1,7 @@
+首先註冊 aspSmartUpload.dll，在開始功能程式集裡，選擇執行，輸入：
+
+regsvr32 c:\aspSmartUpload.dll
+
+另一個檔案 aspSmartUploadUtil.dll 請複製到系統目錄 system32 底下，如果你使用 XP Professional 那系統目錄就是 C:\Windows\system32 ，如果是 NT/2000 Server，那就是 C:\WINNT\system32
+
+這兩個動作都作完，代表準備就緒。

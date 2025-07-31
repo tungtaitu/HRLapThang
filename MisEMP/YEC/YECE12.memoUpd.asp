@@ -1,0 +1,33 @@
+<%@LANGUAGE=VBSCRIPT CODEPAGE=65001%>
+<!-- #include file = "../GetSQLServerConnection.fun" --> 
+<!-- #include file="../ADOINC.inc" --> 
+<%
+SELF = "YECE02" 
+
+ftype = request("ftype") 
+code = request("code") 
+index=request("index")  
+CurrentPage = request("CurrentPage") 
+tmpRec = Session("yece12B") 
+%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<meta http-equiv="refresh"> 
+</head>
+<%
+select case ftype  
+ 
+	CASE "memochk"
+        tmpRec(CurrentPage,index + 1,0) = "UPD"		   		
+        tmpRec(CurrentPage,index + 1,66) = code    
+        response.write tmpRec(CurrentPage,index + 1,66) &"<BR>"   
+end  select   		
+Session("yece12B") = tmpRec
+'response.end 
+%>
+</html>
+<SCRIPT LANGUAGE=VBSCRIPT> 
+	window.close()
+</script>	

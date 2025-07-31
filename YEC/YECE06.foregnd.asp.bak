@@ -1,0 +1,559 @@
+<%@LANGUAGE=VBSCRIPT CODEPAGE=65001%>
+<!-- #include file = "../GetSQLServerConnection.fun" -->
+<!-- #include file="../ADOINC.inc" -->
+<!-- #include file="../Include/func.inc" -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<meta http-equiv="refresh">
+<%
+self="YECE06"
+
+Set conn = GetSQLServerConnection()
+
+nowmonth = year(date())&right("00"&month(date()),2)
+if month(date())="01" then
+	calcmonth = year(date()-1)&"12"
+else
+	calcmonth = year(date())&right("00"&month(date())-1,2)
+end if
+
+if day(date())<=11 then
+	if month(date())="01" then
+		calcmonth = year(date()-1)&"12"
+	else
+		calcmonth = year(date())&right("00"&month(date())-1,2)
+	end if
+else
+	calcmonth = nowmonth
+end if
+
+
+JXYM=REQUEST("JXYM")
+salaryYM=REQUEST("salaryYM")
+country=REQUEST("country")
+JOBID=REQUEST("JOBID")
+empid1 = REQUEST("empid1")
+F_GROUPID = REQUEST("F_GROUPID")
+F_SHIFT=REQUEST("F_SHIFT")
+F_zuno = REQUEST("F_zuno")
+F_whsno=request("F_whsno")
+
+'response.write groupid &"<BR>"
+JXYMdays=left(jxym,4)&"/"&right(jxym,2)&"/01"
+Edays=left(salaryYM,4)&"/"&right(salaryYM,2)&"/01" 
+
+e_edat = left(salaryYM,4)&"/"&right(salaryYM,2)&"/25"
+
+
+TotalPage = 10
+PageRec = 10  'number of records per page
+TableRec = 30  'number of fields per record 
+
+salaryYMDate = left(salaryYM,4)&"/"&right(salaryYM,2)&"/01"
+days = DAY(cDatestr+(32-DAY(salaryYMDate))-DAY(cDatestr+(32-DAY(salaryYMDate))))   '月有幾天
+enddays=left(salaryYM,4)&"/"&right(salaryYM,2)&"/"&right("00"&cstr(days),2)
+
+JXYMdays=left(JXYM,4)&"/"&right(JXYM,2)&"/01"
+JXdays = DAY(cDatestr+(32-DAY(JXYMdays))-DAY(cDatestr+(32-DAY(JXYMdays))))   '月有幾天
+JXenddays=left(JXYM,4)&"/"&right(JXYM,2)&"/"&right("00"&cstr(JXdays),2)
+
+'response.write "JXenddays=" & JXenddays &"<BR>"
+'response.write "Edays=" & Edays &"<BR>" 
+sortby = request("sortby")
+if sortby="" then sortby="lsstr desc, lz,a.empid" 
+
+sql="select isnull(ex.exrt,1) exrt ,  "&_
+	"isnull(fA.stt,0) sttA, isnull(fA.heso,0) hesoA, isnull(fA.per,0) perA, "&_
+	"isnull(fB.stt,0) sttB, isnull(fB.heso,0) hesoB, isnull(fB.per,0) perB, "&_
+	"isnull(fc.stt,0) sttC, isnull(fc.heso,0) hesoC, isnull(fC.per,0) perC, "&_
+	"isnull(fd.stt,0) sttD, isnull(fd.heso,0) hesoD, isnull(fd.per,0) perD, "&_
+	"isnull(fe.stt,0) sttE, isnull(fe.heso,0) hesoE, isnull(fe.per,0) perE, "&_
+	"round( round( ( "&_
+	"isnull(fA.heso,0)*(isnull(fA.per,0)/100.0)+isnull(fB.heso,0)*(isnull(fB.per,0)/100.0)+ "&_
+	"isnull(fC.heso,0)*(isnull(fC.per,0)/100.0)+isnull(fD.heso,0)*(isnull(fD.per,0)/100.0)+ "&_
+	"isnull(fE.heso,0)*(isnull(fE.per,0)/100.0) ) * isnull(z2.bonus,0) ,0 )  ,0) as N_totjx , "&_
+	"isnull(kh.monfen,0) monfen , z.lj as oldjob, z.ljstr as  oldjobdesc, isnull(z2.bonus,0) as Jxbonus,  "&_
+	"y.LG , Y.LS, Y.LZ , y.lzstr, y.lgstr,  "&_
+	"a.bhdat,  isnull ( ( c.latefor+c.forget ) , 0 ) as NFL, c.latefor, c.forget,  "&_
+	"isnull(c.KZHOUR,0) kzhour ,   "&_
+	"a.* from "&_
+	"( select * from view_empfile where country<>'TW' and country<>'MA' ) a "&_
+	"left join ( select EMPID , sum( KZHOUR) as KZHOUR, SUM(latefor) latefor, SUM(FORGET) FORGET from empwork where yymm='"&jxym&"' GROUP BY EMPID ) c on c.empid = a.empid  "&_
+	"LEFT JOIN( SELECT * FROM View_empGroup where  yymm='"&jxym&"' ) y ON y.EMPID= A.EMPID  "&_
+	"left join (select * from view_empjob where yymm='"&jxym&"' ) z on z.empid = a.empid  "&_
+	"left join ( select *  from  empsalarybasic where func='DD'  )z2 on z2.job = z.lj  and z2.country = a.country "&_ 
+	"left join (select khym, empid, sum(fnA+fnb+fnc+fnd) as monfen from empkhb where khym='"&jxym&"' group by khym, empid ) kh on kh.empid = a.empid and kh.khym = '"&jxym&"'  "&_
+	"left join ( select * from YFYMJIXO where stt='A' and  jxym='"&jxym&"'  ) fA on fa.jxwhsno=y.lw and fA.groupid = y.lg and fA.jxwhsno = y.lw and fA.shift like case when isnull(fA.shift,'')='' then '%' else y.ls end and fA.zuno like case when isnull(fA.zuno,'')='' then '%' else y.lz end "&_
+	"left join ( select * from YFYMJIXO where stt='B' and  jxym='"&jxym&"'  ) FB on fb.jxwhsno=y.lw and FB.groupid = y.lg and FB.jxwhsno = y.lw and FB.shift like case when isnull(FB.shift,'')='' then '%' else y.ls end and FB.zuno like case when isnull(FB.zuno,'')='' then '%' else y.lz end "&_
+	"left join ( select * from YFYMJIXO where stt='C' and  jxym='"&jxym&"'  ) FC on fc.jxwhsno=y.lw and FC.groupid = y.lg and FC.jxwhsno = y.lw and FC.shift like case when isnull(FC.shift,'')='' then '%' else y.ls end and FC.zuno like case when isnull(FC.zuno,'')='' then '%' else y.lz end "&_
+	"left join ( select * from YFYMJIXO where stt='D' and  jxym='"&jxym&"'  ) FD on fd.jxwhsno=y.lw and FD.groupid = y.lg and FD.jxwhsno = y.lw and FD.shift like case when isnull(FD.shift,'')='' then '%' else y.ls end and FD.zuno like case when isnull(FD.zuno,'')='' then '%' else y.lz end "&_
+	"left join ( select * from YFYMJIXO where stt='E' and  jxym='"&jxym&"'  ) FE on fe.jxwhsno=y.lw and FE.groupid = y.lg and FE.jxwhsno = y.lw and FE.shift like case when isnull(FE.shift,'')='' then '%' else y.ls end and FE.zuno like case when isnull(FE.zuno,'')='' then '%' else y.lz end "&_
+	"LEFT JOIN ( SELECT * FROM VYFYEXRT WHERE YYYYMM='"&jxym&"' ) ex ON ex.CODE = A.DM "&_		
+	"where y.LW like '"&F_whsno&"%' and a.country like '"&country&"%' and isnull(a.nindat,'')<='"&JXYMdays&"' and (isnull(outdat,'')='' or isnull(outdat,'')<>'' and rtrim(ltrim(outdate))>'"&JXenddays&"' ) "&_
+	"AND y.LG like '"&F_groupid&"%' and isnull(Y.LS,'') like'"&F_shift&"%' and lz<= case when lg='A065' then 'A0655' else 'zzzzz' end AND y.LZ LIKE '"&F_zuno&"%' "&_
+	"and a.empid like '%"&empid1&"' order by " & sortby 
+'RESPONSE.WRITE SQL &"<BR>"
+'RESPONSE.END 
+
+if request("totalpage")="" or request("totalpage")="0" then 
+currentpage=1 
+Set rs = Server.CreateObject("ADODB.Recordset")
+RS.OPEN SQL,CONN, 1, 3  
+if not rs.eof then 
+	pagerec = rs.RecordCount
+	rs.PageSize = pagerec
+	RecordInDB = rs.RecordCount
+	TotalPage = rs.PageCount
+	lgstr = rs("lgstr")
+end if 	
+Redim tmpRec(TotalPage,PageRec, TableRec)  'Array
+for i = 1 to TotalPage
+	for j = 1 to PageRec
+		if not rs.EOF then
+			tmpRec(i, j, 0)="no"
+			tmpRec(i, j, 1)=trim(rs("EMPID"))
+			tmpRec(i, j, 2)=trim(rs("LG"))  '績效年月時之單位
+			tmpRec(i, j, 3)=trim(rs("LS"))  '績效年月時之班別
+			tmpRec(i, j, 4)=rs("Jxbonus")
+			tmpRec(i, j, 5)=rs("EMPNAM_CN")
+			tmpRec(i, j, 6)=rs("EMPNAM_VN")
+			tmpRec(i, j, 7)=rs("nindat")
+			if JXYM>"200702" then 
+				if  rs("country")="CN" then 
+					tmpRec(i, j, 8) = 0
+				else
+					tmpRec(i, j, 8)= cdbl(RS("KZHOUR"))
+				end if 	
+			else
+				if  rs("country")="CN" then 
+					tmpRec(i, j, 8) = 0
+				else
+					tmpRec(i, j, 8)= rs("latefor")+rs("forget")
+				end if 	
+			end if	
+			tmpRec(i, j, 9)= 0 'rs("SUmoney")
+			tmpRec(i, j, 10)= rs("oldjob")
+			tmpRec(i, j, 11)=left(rs("oldjobdesc"),4)
+
+			F1_TOTJX = 0
+			'for z = 1 to icount
+			'	'共有幾項績效項目
+			'	tmpRec(i, j,11+z)= round( (cdbl(rs("Jxbonus"))* ( cdbl(arrays(z,9))/100 ) ) * cdbl(arrays(z,8)) , 0) 
+			'	F1_TOTJX = F1_TOTJX + cdbl(tmpRec(i, j, 11+z))
+			'	'response.write tmpRec(i, j, 1) &"-" & 11+Z &"-" & tmpRec(i, j, 11+z) &"-" & arrays(z,9) &"-" &arrays(z,8) &"<BR>"
+			'next
+			
+			tmpRec(i, j, 12) =  round(cdbl(rs("hesoA"))*(cdbl(rs("perA"))/100),0)
+			tmpRec(i, j, 13) =  round(cdbl(rs("hesoB"))*(cdbl(rs("perB"))/100),0)
+			tmpRec(i, j, 14) =  round(cdbl(rs("hesoC"))*(cdbl(rs("perC"))/100),0)
+			tmpRec(i, j, 15) =  round(cdbl(rs("hesoD"))*(cdbl(rs("perD"))/100),0)
+			tmpRec(i, j, 16) =  round(cdbl(rs("hesoE"))*(cdbl(rs("perE"))/100),0)
+			
+			F1_TOTJX = cdbl(tmpRec(i, j, 12))+cdbl(tmpRec(i, j, 13))+cdbl(tmpRec(i, j, 14))+cdbl(tmpRec(i, j, 15))+cdbl(tmpRec(i, j, 16))
+			if tmpRec(i, j, 8)< 8 then
+				tmpRec(i, j, 17)= 0
+			elseif cdbl(tmpRec(i, j, 8))>=8 and cdbl(tmpRec(i, j, 8))<16 then
+				tmpRec(i, j,17) = round(cdbl(F1_TOTJX)*0.5,0)'曠職ㄧ天以上...扣績效獎金一半
+			elseif cdbl(tmpRec(i, j, 8))>=16 then
+				tmpRec(i, j, 17)= cdbl(F1_TOTJX)  ''曠職2天以上...無績效獎金
+			end if
+			F1_TOTJX = cdbl(rs("N_totjx"))   			
+			
+			tmpRec(i, j, 18) = rs("N_totjx")  'F1_TOTJX
+			'tmpRec(i, j, 14+icount) = round(cdbl(F1_TOTJX)-cdbl(tmpRec(i, j,12+icount))-cdbl(tmpRec(i, j, 9)),0)
+			tmpRec(i, j, 20 ) = rs("outdate")
+			IF RS("COUNTRY")="CN" THEN 
+				tmpRec(i, j, 21) = 1 
+			ELSE
+				'if cdbl(rs("EMPPER"))>=1 then 
+				'	tmpRec(i, j, 21) = 1  'rs("EMPPER") 
+				'	'tmpRec(i, j, 21) =1 ' rs("EMPPER") 
+				'else
+					tmpRec(i, j, 21) = 1  'rs("EMPPER")
+				'end if 	
+			END IF 	
+			'if cdbl(tmpRec(i, j, 21))>=1 then 
+			'	tmpRec(i, j, 22) =  fix( round( tmpRec(i, j, 19),0) /1000) * 1000 
+			'else	
+			'	tmpRec(i, j, 22)  =  fix( round( cdbl(tmpRec(i, j, 21))* cdbl(tmpRec(i, j,19)) ,0) /1000) * 1000 
+			'end if 	
+			
+			IF left(replace(rs("outdate"),"/",""),6)>=JXYM and trim(rs("outdate"))< e_edat  then 
+				tmpRec(i, j, 19) = 0
+			else
+				if jxym>"200702" then 
+					if cdbl(tmpRec(i, j, 21))>=1 then 
+						tmpRec(i, j, 19) =  ( round(cdbl(F1_TOTJX)-cdbl(tmpRec(i, j,17))-cdbl(tmpRec(i, j, 9)),0)) 
+					else	
+						tmpRec(i, j, 19)  =  round(  cdbl(tmpRec(i, j, 21)) *round(cdbl(F1_TOTJX)-cdbl(tmpRec(i, j,17))-cdbl(tmpRec(i, j, 9)),0) ,0)
+					end if 	
+				else
+					tmpRec(i, j, 19) = round(cdbl(F1_TOTJX)-cdbl(tmpRec(i, j,17))-cdbl(tmpRec(i, j, 9)),0) 
+				end if 
+			end if 			
+			
+			tmpRec(i, j, 23 ) = rs("groupid")  '目前單位
+			if rs("shift")="" then 
+				tmpRec(i, j, 24 ) = rs("LS")  '計績效時班別
+			else
+				tmpRec(i, j, 24) = rs("shift")  '目前班別
+			end if	
+			
+			tmpRec(i, j, 25 ) = rs("zuno") '目前組別
+			tmpRec(i, j, 26 ) =rs("LZ")  '績效年月的組別
+			tmpRec(i, j, 27 ) =rs("monfen")  '考核分數		
+			
+			if  rs("country")="VN" then 
+				if tmpRec(i, j, 27)< "70" then 
+					
+					tmpRec(i, j, 19) = round(tmpRec(i, j, 19) *0.5 ,0)
+				else
+					tmpRec(i, j, 19) = tmpRec(i, j, 19) 
+				end if 
+			else
+				tmpRec(i, j, 19) = tmpRec(i, j, 19)
+			end if 			
+						
+				
+			tmpRec(i, j, 28 ) =rs("LZstr")  '績效年月的組別
+			tmpRec(i, j, 29 ) = rs("DM")
+			tmpRec(i, j, 30 ) = cdbl(rs("exrt"))
+			rs.MoveNext
+		else
+			exit for
+		end if
+	next
+NEXT
+Session("YFYEMPJXM") = tmpRec 
+end if  
+%>
+<link rel="stylesheet" href="../Include/style.css" type="text/css">
+<link rel="stylesheet" href="../Include/style2.css" type="text/css">
+</head>
+<body  topmargin="5" leftmargin="5" marginwidth="0" marginheight="0" onkeydown="enterto()" >
+<form name="<%=self%>" method="post" action="<%=self%>.upd.asp">
+<INPUT TYPE=hidden NAME=TotalPage VALUE="<%=TotalPage%>">
+<INPUT TYPE=hidden  NAME=CurrentPage VALUE="<%=CurrentPage%>">
+<INPUT TYPE=hidden NAME=PageRec VALUE="<%=PageRec%>">
+<INPUT TYPE=hidden NAME=RecordInDB VALUE="<%=RecordInDB%>">
+<INPUT TYPE=hidden NAME="ICOUNT"   VALUE="<%=ICOUNT%>">
+<INPUT TYPE=hidden NAME="F_whsno"   VALUE="<%=F_whsno%>">
+<INPUT TYPE=hidden NAME="empid1"   VALUE="<%=F_whsno%>">
+<table width="460" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<TD><img border="0" src="../image/icon.gif" align="absmiddle"> 績效獎金</TD>
+	</tr>
+</table>
+<hr size=style='border: 1px dotted #999999;' align=left width=500>
+<TABLE WIDTH=500><TR><TD ALIGN=CENTER>
+	<table  width=550  class=txt>
+		<tr height=22>
+			<td ALIGN=right>績效年月</td>
+			<td><INPUT NAME="JXYM" VALUE="<%=JXYM%>" CLASS=READONLY2 READONLY SIZE=8 ></td>
+			<td ALIGN=RIGHT>計薪年月</td> <td><INPUT NAME="SALARYYM" VALUE="<%=SALARYYM%>"  CLASS=READONLY2  READONLY  SIZE=8   ></td>
+			<td ALIGN=RIGHT>部門</td>
+			<td>
+				<INPUT type=hidden NAME="F_groupid" VALUE="<%=F_GROUPID%>" CLASS=READONLY2 READONLY size=5 >
+				<INPUT NAME="GSTR" VALUE="<%=lgstr%>" CLASS=READONLY2 READONLY SIZE=8 >				
+			</td>	
+			<td ALIGN=RIGHT>班別</td>
+			<td>
+				<select name=F_shift class=txt8 onchange="dchg()">
+				<option value="">--</option>
+				<%sqlt="select * from basicCode where func='shift' order by sys_type"
+				set rds=conn.execute(sqlt)
+				while not rds.eof
+				%>
+				<option value="<%=rds("sys_type")%>"><%=rds("sys_type")%></option>
+				<%rds.movenext
+				wend
+				set rds=nothing
+				%>
+			</td>	
+			<td ALIGN=RIGHT>單位</td>
+			<td>
+				<select name=F_zuno class=txt8  onchange="dchg()">				
+				<option value="">--</option>
+				<%sqlt="select * from basicCode where func='zuno' and left(sys_type,4) like '"& f_groupid&"'  order by sys_type"
+				set rds=conn.execute(sqlt)
+				while not rds.eof
+				%>
+				<option value="<%=rds("sys_type")%>" <%if f_zuno=rds("sys_type") then%>selected<%end if%>><%=rds("sys_type")%><%=rds("sys_value")%></option>
+				<%rds.movenext
+				wend
+				set rds=nothing
+				%>
+			</td>			
+		</tr>
+		<tr>	
+			<td ALIGN=RIGHT>排序</td>
+			<td colspan=3>
+				<select name=sortby class=txt8  onchange="dchg()">
+					<option value="lsstr desc, lz,a.empid" <%if sortby="lsstr desc, lz,a.empid" then%>selected<%end if%>>(1)依班別(Ca)</option>
+					<option value="a.empid"  <%if sortby="a.empid" then%>selected<%end if%>>(2)依工號(so the)</option>
+					<option value="lz,ls,a.empid" <%if sortby="lz,ls,a.empid" then%>selected<%end if%>>(3)依單位(to)</option>
+					<option value="a.country, a.empid" <%if sortby="a.country, a.empid" then%>selected<%end if%>>(4)依國籍(quoc tich)</option>					
+				</select>
+			</td>	 
+		</tr>
+	</table>
+</td></tr></table>	
+<hr size=0	 style='border: 1px dotted #999999;'align=left width=500>
+<table width=650 border=0 ><tr><td>
+	<TABLE width=600 CLASS=TXT8 BGCOLOR="#CCCCCC" BORDER=0 border="1" cellspacing="1" ALIGN=CENTER>
+		<TR BGCOLOR="#FEF7CF">
+			<TD width=50 HEIGHT=22 ALIGN=CENTER nowrap>工號</TD>
+			<TD width=90 ALIGN=CENTER nowrap>姓名</TD>
+			<TD width=70 ALIGN=CENTER nowrap>到職日</TD>
+			<TD width=60 ALIGN=CENTER  nowrap>班別<BR>單位</TD>
+			<TD width=60 ALIGN=CENTER  nowrap>職等</TD>			
+			<TD width=40 ALIGN=CENTER nowrap>績效<BR>係數</TD>
+			<td  width=100 align=center>A</td>
+			<td  width=100 align=center>B</td>
+			<td  width=100 align=center>C</td>
+			<td  width=100 align=center>D</td>
+			<td  width=100 align=center>E</td>
+			<td  width=100 align=center>小計</td>
+			<td width=60 align=center>曠職<BR>時數</td>
+			<td width=60 align=center>扣款金額　</td>
+			<td width=50 nowrap align=center>反規定</td>
+			<td width=60 nowrap align=center>事故扣款</td>
+			<td width=50 nowrap align=center>考核</td>
+			<td width=60 nowrap align=center>合計</td>
+			<td width=40 nowrap align=center>幣別</td>
+			<td width=40 nowrap align=center>合計<BR>(USD)</td>
+			 
+		</TR>
+			<%for CurrentRow = 1 to PageRec
+				IF CurrentRow MOD 2 = 0 THEN
+					WKCOLOR="#FFFFFF"
+				ELSE
+					WKCOLOR="#FFFFFF"
+				END IF
+				if tmpRec(CurrentPage,  CurrentRow,  1)<>"" then
+			%>
+					<TR id=id1 bgColor="<%=wkcolor%>" >
+						<TD nowrap align=center style="cursor:hand" onclick="vbscript:oepnEmpWKT(<%=currentRow-1%>)"  >
+							<%=tmpRec(CurrentPage,CurrentRow, 1)%>
+							<input type=hidden name="empid" value="<%=tmpRec(CurrentPage,CurrentRow, 1)%>">
+							<input type=hidden name="NowGroup" value="<%=tmpRec(CurrentPage,CurrentRow, 23)%>">
+							<input type=hidden name="NowShift" value="<%=tmpRec(CurrentPage,CurrentRow, 24)%>">
+							<input type=hidden name="NowZuno" value="<%=tmpRec(CurrentPage,CurrentRow, 25)%>">
+							<input type=hidden name="jxgroup" value="<%=tmpRec(CurrentPage,CurrentRow, 2)%>">
+							<input type=hidden name="jxShift" value="<%=tmpRec(CurrentPage,CurrentRow, 3)%>">
+							<input type=hidden name="jxZuno" value="<%=tmpRec(CurrentPage,CurrentRow, 26)%>">
+						</TD>
+						<TD style="cursor:hand" onclick="vbscript:oepnEmpWKT(<%=currentRow-1%>)"><%=tmpRec(CurrentPage,CurrentRow, 5)%><BR><%=left(tmpRec(CurrentPage, CurrentRow, 6),15)%></TD>
+						<TD nowrap align=center ><%=tmpRec(CurrentPage,CurrentRow,7)%><br><font color=red><%=tmpRec(CurrentPage,CurrentRow,20)%></font></TD>
+						<TD nowrap>
+							<%=tmpRec(CurrentPage,CurrentRow,24)%>-
+							<%=(tmpRec(CurrentPage,CurrentRow,28))%>
+						</TD>
+						<TD nowrap>
+							<%=tmpRec(CurrentPage,CurrentRow,10)%>-
+							<%=tmpRec(CurrentPage,CurrentRow,11)%>
+						</TD>
+						<TD nowrap align=center><%=tmpRec(CurrentPage, CurrentRow, 4)%></TD> 
+						<Td>
+							<input name="JXA"  class="inputbox8r" size="6" value="<%=tmpRec(CurrentPage,CurrentRow,12)%>"  onchange="datachg(<%=currentRow-1%>)" >
+							<input type=hidden size=3 name="BJXA" value="<%=tmpRec(CurrentPage, CurrentRow,12)%>" >
+						</td>	
+						<Td>
+							<input name="JXB"  class="inputbox8r" size="6" value="<%=tmpRec(CurrentPage,CurrentRow,13)%>"  onchange="datachg(<%=currentRow-1%>)" >
+							<input type=hidden size=3 name="BJXB" value="<%=tmpRec(CurrentPage, CurrentRow,13)%>" >
+						</td>	
+						<Td>
+							<input name="JXC"  class="inputbox8r" size="6" value="<%=tmpRec(CurrentPage,CurrentRow,14)%>"  onchange="datachg(<%=currentRow-1%>)" >
+							<input type=hidden size=3 name="BJXC" value="<%=tmpRec(CurrentPage, CurrentRow,14)%>" >
+						</td>	
+						<Td>
+							<input name="JXD"  class="inputbox8r" size="6" value="<%=tmpRec(CurrentPage,CurrentRow,15)%>"  onchange="datachg(<%=currentRow-1%>)" >
+							<input type=hidden size=3 name="BJXD" value="<%=tmpRec(CurrentPage, CurrentRow,15)%>" >
+						</td>	
+						<Td>
+							<input name="JXE"  class="inputbox8r" size="6" value="<%=tmpRec(CurrentPage,CurrentRow,16)%>"  onchange="datachg(<%=currentRow-1%>)" >
+							<input type=hidden size=3 name="BJXE" value="<%=tmpRec(CurrentPage, CurrentRow,16)%>" >
+						</td>	
+						<TD nowrap align=center><input name="sumjx" class="readonly8s" size=6 value="<%=tmpRec(CurrentPage, CurrentRow,18)%>" readonly style='text-align:right'> </TD>
+						<TD nowrap align=center><input name="FL" class="readonly8s" size=2 value="<%=tmpRec(CurrentPage, CurrentRow,8)%>" readonly style='text-align:right;<%if cdbl(tmpRec(CurrentPage, CurrentRow,8))<>0 then%>color:red<%end if%>'> </TD>
+						<TD nowrap align=center><input name="FLmoney"  class="readonly8s" size="5"  value="<%=tmpRec(CurrentPage,CurrentRow,17)%>" readonly style='text-align:right' > </TD>
+						<TD align=center><input name="FQD"  class="inputbox8r" size="5" value="0" onblur="FQDchg(<%=currentRow-1%>)" > </TD>
+						<TD align=center>
+							<input name="SSmoeny"  class="readonly8s" size="5" value="<%=tmpRec(CurrentPage,  CurrentRow,  9)%>" style='text-align:right' ONCHANGE=SUKMCHG(<%=currentRow-1%>)>
+							<input TYPE=HIDDEN name="BSSmoeny"  class="readonly8s"   value="<%=tmpRec(CurrentPage,  CurrentRow,  9)%>" >							
+						</TD> 
+						<TD align=center>
+							<%if tmpRec(CurrentPage,CurrentRow,27)< 70 then %>
+								<input name="khfen"  class="readonly8s" readonly size="3" value="<%=tmpRec(CurrentPage,CurrentRow,27)%>"  style='text-align:right;color:red' > 
+							<%else%>
+								<input type=hidden name="khfen"   size="5" value="<%=tmpRec(CurrentPage,CurrentRow,27)%>" > 
+							<%end if %>	
+						</TD>						
+						<TD  align=center>
+							<input name="TOTJX" class="inputbox8r" size=7 value="<%=tmpRec(CurrentPage,CurrentRow,19)%>" style='color:blue'>
+							<input type=hidden name="workJs" class="inputbox8r" size=5 value="<%=tmpRec(CurrentPage,CurrentRow,20)%>" >
+							<input type=hidden name="BTOTJX"  value="<%=tmpRec(CurrentPage,CurrentRow, 19)%>" >
+							<input name="realJXM" class="inputbox8r" size=10 value="<%=tmpRec(CurrentPage,CurrentRow,22)%>" type=hidden>
+						</TD>		
+						<TD align=center>
+							<input name="dm"  class="readonly8" size="4" value="<%=tmpRec(CurrentPage,CurrentRow,29)%>" style='text-align:right' ONCHANGE=SUKMCHG(<%=currentRow-1%>)>
+						</TD> 				
+						<TD align=center>
+							<%
+							if trim(tmpRec(CurrentPage,CurrentRow,29))="USD" then 
+								usd_jxm=round(cdbl(tmpRec(CurrentPage,CurrentRow,19))/cdbl(tmpRec(CurrentPage,CurrentRow,30)),0)
+							else
+								usd_jxm=0
+							end if 	
+							%>
+							<input name="jxmUSD"  class="readonly8s" size="4" value="<%=usd_jxm%>" style='text-align:right'  > 
+						</TD> 				
+					</TR>
+				<%else%>
+					<input type=hidden name="empid"  >
+					<%for  zz  =  1  to  5  
+						zzstr=chr(64+zz)
+					 %>
+						<input type=hidden name="JX"&<%=zzstr%>>
+						<input type=hidden name="BJX"&<%=zzstr%>>
+					<%next%> 
+					<input type=hidden name="FL" >
+					<input type=hidden name="FLmoney" >
+					<input type=hidden name="FQD" >
+					<input type=hidden name="SSmoeny" >
+					<input type=hidden name="BSSmoeny">
+					<input type=hidden name="TOTJX" >
+					<input type=hidden name="BTOTJX" >	
+					<input type=hidden name="workJs" >	
+					<input type="hidden" name="realJXM" >	
+			<%end if%>
+			<%next%> 
+	</TABLE> 	 
+	<br>
+	<table width=600 class=txt9>
+		<tr>
+		<td align=left>
+		<% If CurrentPage > 1 Then %>
+			<input type="submit"name="send"  value="FIRST" class=button>
+			<input type="submit"  name="send" value="BACK" class=button>
+		<% Else  %>
+			<input  type="submit" name="send" value="FIRST"  disabled  class=button>
+			<input  type="submit"  name="send" value="BACK" disabled class=button>
+		<% End If %>
+		<%  If  cint(CurrentPage)  <  cint(TotalPage)  Then %>
+			<input type="submit" name="send" value="NEXT" class=button>
+			<input type="submit" name="send" value="END" class=button>
+		<% Else %>
+			<input type="submit" name="send" value="NEXT" disabled class=button>
+			<input type="submit" name="send" value="END"  disabled  class=button>
+		<%  End  If  %>
+		</TD>
+		<td align=center>共<%=RecordInDB%>筆, 第<%=CurrentPage%>頁/共<%=TotalPage%>頁</td>
+		<td  align=riht>
+			<input type=button  name=btm  class=button value="確　　認" onclick="go()">
+			<input Type=reset name=btM class=buttoN value="取　　消" onclick=goclr()>
+		</td>
+		</tr>
+	</table>
+	<input type=hidden name="empid" >
+	<%for yy = 1to ICOUNT %>
+	<input type=hidden name="JX"&<%=arrays(yy,5)%>>
+	<input type=hidden name="BJX"&<%=arrays(yy,5)%>>
+	<%next%>
+	<input type=hidden name="SUMJX" >
+	<input type=hidden name="FL" >
+	<input type=hidden name="FLmoney" >
+	<input type=hidden name="FQD" >
+	<input type=hidden name="SSmoeny" >
+	<input type=hidden name="BSSmoeny" >
+	<input type=hidden name="TOTJX" >
+	<input type=hidden name="BTOTJX" >
+	<input type=hidden name="workJs" >		
+	<input type="hidden" name="realJXM" >	
+</td></tr></table>
+</form>
+</body>
+</html>
+<script language=vbscript >
+function oepnEmpWKT(index)  
+	empidstr  =<%=self%>.empid(index).value 
+	yymmstr  = <%=self%>.JXym.value 	 
+	open "../ZZZ/getEmpWorkTime.asp?yymm="& yymmstr & "&empid=" & empidstr , "_blank","top=10 , left=10, scrollbars=yes"
+end function 
+
+function dchg()
+	<%=self%>.totalpage.value="0"
+	<%=self%>.action="<%=self%>.foregnd.asp"
+	<%=self%>.submit()
+end function 
+
+function goclr()
+	open "<%=self%>.asp", "_self"
+end function 
+
+function  datachg(index)		 
+	thiscols  =document.activeElement.name 
+	Bcols="B"&document.activeElement.name
+	if isnumeric(document.all(thiscols)(index).value)=false then
+		alert  "請輸入數值"
+		document.all(thiscols)(index).focus()
+		document.all(thiscols)(index).value=document.all(Bcols)(index).value
+		document.all(thiscols)(index).select()
+	 	'exit function 		 
+	else
+		NewJXM=cdbl(document.all(Bcols)(index).value) -  cdbl(document.all(thiscols)(index).value)
+		NewTOTJX=cdbl(<%=self%>.BTOTJX(index).value)-cdbl(<%=self%>.TOTJX(index).value)
+		<%=self%>.TOTJX(index).value=cdbl(<%=self%>.TOTJX(index).value) - (cdbl(NewJXM)) - (+ewTOTJX)
+	end if
+end function
+
+FUNCTION SUKMCHG(INDEX)
+	IF ISNUMERIC(<%=SELF%>.SSMOENY(INDEX).VALUE)=FALSE THEN
+		ALERT "請輸入數值!!"
+		<%=SELF%>.SSMOENY(INDEX).FOCUS()
+		<%=SELF%>.SSMOENY(INDEX).VALUE=<%=SELF%>
+	ELSE
+		NEWSUKM=CDBL(<%=SELF%>.BSSMOENY(INDEX).VALUE)-CDBL(<%=SELF%>.SSMOENY(INDEX).VALUE)
+		NewTOTJX=cdbl(<%=self%>.BTOTJX(index).value)-cdbl(<%=self%>.TOTJX(index).value)
+		<%=self%>.TOTJX(index).value=cdbl(<%=self%>.TOTJX(index).value) + (cdbl(NEWSUKM)) + (CDBL(NewTOTJX))
+	END IF
+END FUNCTION
+
+function  fqdchg(index)  
+	'200803反規定ㄧ次扣10000VND
+	if <%=self%>.fqd(index).value<>"" then 
+		if isnumeric(<%=self%>.fqd(index).value)=false then 
+			alert "請輸入數字!!"
+			<%=self%>.fqd(index).value="0"
+			<%=self%>.fqd(index).select()
+			exit function 
+		elseif cdbl(<%=self%>.fqd(index).value)=0 then
+			<%=self%>.TOTJX(index).value = cdbl(<%=self%>.sumjx(index).value)- cdbl(<%=self%>.FLmoney(index).value)
+		else
+			<%=self%>.TOTJX(index).value = cdbl(<%=self%>.sumjx(index).value) - cdbl(<%=self%>.FLmoney(index).value)-( cdbl(<%=self%>.fqd(index).value)*10000 ) 
+		end if 
+	end if	 
+	
+	'old 適用至2008/02
+	'if  cdbl(<%=self%>.fqd(index).value)=1  then
+	'	<%=self%>.TOTJX(index).value=cdbl(<%=self%>.TOTJX(index).value)/2
+	'elseif cdbl(<%=self%>.fqd(index).value)=2 then
+	'	<%=self%>.TOTJX(index).value=0
+	'else
+ 	'	<%=self%>.TOTJX(index).value = <%=self%>.TOTJX(index).value 
+	'end if
+	
+end function
+
+function TT(a) 
+	alert <%=self%>.JXSTT(a).value
+end function
+
+FUNCTION GO()  	
+	<%=self%>.action ="<%=self%>.upd.asp"
+	<%=SELF%>.SUBMIT
+END FUNCTION
+
+</script> 

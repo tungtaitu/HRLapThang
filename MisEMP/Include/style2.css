@@ -1,0 +1,59 @@
+body  { color: #000000; font-family: Verdana, Arial; font-size: 9pt }
+.main { LEFT: 5px; MARGIN: 0px; POSITION: absolute; TOP: 5px; WIDTH: 645px; BACKGOUND-COLOR:white }
+.txt12 { FONT-FAMILY: Verdana; FONT-SIZE: 12pt }
+.txt10 { FONT-FAMILY: Verdana; FONT-SIZE: 10pt }
+.txty { FONT-FAMILY: Verdana;  color:yellow; FONT-SIZE:12px }
+.txtB { FONT-FAMILY: Verdana;  color:blue; FONT-SIZE:12px }
+.txt8 { FONT-FAMILY: Tahoma;  FONT-SIZE: 8pt }
+.font9 { FONT-FAMILY: Verdana,Tahoma;  FONT-SIZE: 8pt }
+.txt8B { FONT-FAMILY: Tahoma;  FONT-SIZE: 8pt; COLOR:#708090 }
+.opt12 { COLOR: dimgray; FONT-FAMILY: Verdana; FONT-SIZE: 12pt }
+.opt { COLOR: dimgray; FONT-FAMILY: Verdana; FONT-SIZE: 9pt }
+.inputbox { border: 1px solid #cccc99 ; FONT-FAMILY: Tahoma; FONT-SIZE: 9pt; height: 22px; }
+.inputboxr { border: 1px solid #cccc99  ; FONT-FAMILY: Tahoma; FONT-SIZE: 9pt; height: 22px; text-align:right}
+.inputbox8 { border: 1px solid #cccc99  ; FONT-FAMILY: Tahoma; FONT-SIZE: 8pt; height: 22px; }
+.inpt8red { border: 1px solid #ff0000 ; FONT-FAMILY: Tahoma; FONT-SIZE: 8pt; height: 20px; }
+.inpt8blue { border: 1px solid #0000ff ; FONT-FAMILY: Tahoma; FONT-SIZE: 8pt; height: 20px; }
+.inputbox8green { border: 1px solid green ; FONT-FAMILY: Tahoma; FONT-SIZE: 8pt; height: 20px; }
+.inputbox8r { border: 1px solid #cccc99  ; FONT-FAMILY: Tahoma; FONT-SIZE: 8pt; height: 22px; text-align:right}
+.inpt { border: 1px solid #CCCCCC; FONT-FAMILY: Verdana; FONT-SIZE: 9pt; height: 22px; }
+.readonly  { border: 1px solid #cccc99 ; background-color: lightyellow; FONT-FAMILY: Tahoma; FONT-SIZE: 9pt; height: 22px; }
+.readonly8 {border: 1px solid #CCCCCC;  background-color: #FFFFEC; font-family: Verdana; font-size: 8pt ; height:22}
+.readonly8r {border: 1px solid #CCCCCC;  background-color: lightyellow; font-family: Verdana; font-size: 8pt ; height:22; text-align:right}
+.readonly8s { background-color: lightyellow; border: 1px solid #cccc99  ; FONT-FAMILY: arial; FONT-SIZE: 8pt; height: 22px; }
+.readonly2 { border: 1px solid #CCCCCC; background-color: lightyellow; font-family: Verdana; font-size: 9pt ; height: 20px; }
+.readonly10 { border: 1px solid #CCCCCC; background-color:#ffe4e1; font-family: Verdana; font-size: 9pt }
+.readonlyN { BACKGROUND-COLOR: lightyellow; FONT-FAMILY: Verdana; FONT-SIZE: 9pt; TEXT-ALIGN: right }
+.readonlyN8 { BACKGROUND-COLOR: lightyellow; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; TEXT-ALIGN: right } 
+.button { FONT-FAMILY: Tahoma; BACKGROUND-COLOR: #DEDEBC; FONT-SIZE: 12PX; height:23px ;    }
+.buttonbar { LEFT: 0px; MARGIN: 0px; POSITION: absolute; TOP: 500px; WIDTH: 645px; BACKGOUND-COLOR: white }
+.full { LEFT: 0px; MARGIN:0 px; POSITION: absolute; TOP: 0px; WIDTH: 750px }
+.stat { LEFT: 515px; MARGIN: 0px; POSITION: absolute; TOP: 40px; WIDTH: 150px }
+.sideinfo { LEFT: 85px; MARGIN: 0px; POSITION: absolute; TOP: 40px; WIDTH: 450px }
+.msg {LEFT: 0px; MARGIN: 0px; POSITION: absolute; TOP: 35px; WIDTH: 650px }
+.num { FONT-FAMILY: Verdana; FONT-SIZE: 9pt; TEXT-ALIGN: right }
+.num8 { FONT-FAMILY: Verdana; FONT-SIZE: 8pt; TEXT-ALIGN: right }
+.stat1 { LEFT: 510px; POSITION: absolute; TOP: 50px; WIDTH: 180px }
+.Atest1 { CURSOR: hand }
+.stat2 { LEFT: 510px; POSITION: absolute; TOP: 950px }
+.txt11 { FONT-FAMILY: 'Times New Roman'; FONT-SIZE: 11pt }
+.txt10 { FONT-FAMILY: 'Times New Roman'; FONT-SIZE: 10pt }
+.txt9 { FONT-FAMILY: 'Times New Roman'; FONT-SIZE: 9pt }
+.TXT99 { FONT-FAMILY: 'Times New Roman', 'Book Antiqua'; FONT-SIZE: 10pt }
+.btnB {   FONT-SIZE: 12PT; height:30px }
+.btnM {   FONT-SIZE: 10PT; height:22px }
+.txt9N { FONT-FAMILY: 'Times New Roman'; FONT-SIZE: 9pt; COLOR:#CCCCCC }
+.txt9C { FONT-FAMILY: 'Times New Roman'; FONT-SIZE: 9pt; COLOR:#6600ff }
+.txt9bgr {
+	font-family: "Times New Roman", "Times", "serif";
+	background-color: #FFCC99;
+	font-size: 12px;
+	line-height: 25px;	
+}
+.textarea
+{
+    border: 1px solid #CCCCCC;
+		FONT-FAMILY:Verdana;
+    FONT-SIZE: 8pt;
+}
+ 

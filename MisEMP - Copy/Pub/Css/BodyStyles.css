@@ -1,0 +1,855 @@
+BODY
+{
+	BACKGROUND-COLOR: #DCF1F1;
+    COLOR: black;
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 9pt;
+    MARGIN: 0px;
+    border:0;
+    overflow:auto;
+    scrollbar-face-color:#FFFFFF;
+	scrollbar-shadow-color:#DCF1F1;
+	scrollbar-highlight-color:#ffffff;
+	scrollbar-3dlight-color:#DCF1F1;
+	scrollbar-darkshadow-color:#ffffff;
+	scrollbar-track-color:#FFFFFF;
+	scrollbar-arrow-color:#cccccc;
+    BACKGROUND-IMAGE: url(../../images/bg_main1.jpg);
+    BACKGROUND-POSITION: left top;
+    /*BACKGROUND-REPEAT: repeat-x;*/
+    TEXT-ALIGN: left;
+}
+TABLE
+{
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 9pt;
+}
+.SourceTitlePanel 
+{
+    BACKGROUND-COLOR: #cccc99;
+    COLOR: #006699;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 14pt;
+    FONT-WEIGHT: bolder;
+    HEIGHT: 30px;
+    LETTER-SPACING: 1pt;
+    PADDING: 6px;
+}
+.SourcePanel 
+{
+	COLOR: black;
+	FONT-FAMILY: 'Lucida Console';
+	FONT-SIZE: 9pt;
+	PADDING: 4px;
+}
+
+
+
+.tbl02_txt1_0	/*(灰+藍綠色系)tbl內容偶數行預設時*/
+{	background:#64D2D9;
+	color:#000000;
+	cursor:hand;
+}
+.tbl02_txt0_0	/*(灰+藍綠色系)tbl內容奇數行預設時*/
+{	background:#E6FBFE;
+	color:#087294;
+	cursor:hand;
+}
+.tbl02_tit	/*(灰+藍綠色系)tbl標題*/
+{	background:#777777;
+	color:#FFFFFF;
+	font:9pt "新細明體";
+	letter-height:200;
+	letter-spacing:1;
+	padding-top:2;
+	text-align:center;
+}	
+.frm_itm /*frm項目名稱*/
+{	color:#0777A8;
+	font:8pt 'Verdana';
+	padding-top:2;
+	text-align:left;
+	padding-top:7;
+	vertical-align:top;
+}
+.btn01s_0 /*一般按鈕(1~2字)預設時*/
+{	background-color:transparent;
+	background-image:url(../../Images/btnImg/btn01s_0.gif);
+	background-repeat:no-repeat;
+	border:0 solid #FFFFFF; 
+	color:#777777;
+	font:12pt '新細明體';
+	height:20;
+	letter-spacing:1;
+	padding-top:0;
+	text-align:center;
+	text-decoration:none;
+	width:50; 
+}
+
+
+.btn01s_1 /*一般按鈕(1~2字)滑鼠滑過時*/
+{	background-color:transparent;
+	background-image:url(../../Images/btnImg/btn01s_1.gif);
+	background-repeat:no-repeat;
+	border:0 solid #FFFFFF;
+	color:#FFFF00;
+	font:12pt '新細明體';
+	height:20;
+	letter-spacing:1;
+	padding-top:1;
+	text-decoration:none;
+	text-align:center;
+	width:50; 
+}
+
+.btn02s_0 /*一般按鈕(1~2字)預設時*/
+{	background-color:transparent;
+	background-image:url(../../Images/btnImg/btn01bn_0.gif);
+	background-repeat:no-repeat;
+	border:0 solid #FFFFFF; 
+	color:#777777;
+	font:12pt '新細明體';
+	height:20;
+	letter-spacing:1;
+	padding-top:0;
+	text-align:center;
+	text-decoration:none;
+	width:100; 
+}
+
+.btn02s_1 /*一般按鈕(1~2字)滑鼠滑過時*/
+{	background-color:transparent;
+	background-image:url(../../Images/btnImg/btn01bn_1.gif);
+	background-repeat:no-repeat;
+	border:0 solid #FFFFFF;
+	color:#FFFF00;
+	font:12pt '新細明體';
+	height:20;
+	letter-spacing:1;
+	padding-top:1;
+	text-decoration:none;
+	text-align:center;
+	width:100; 
+}
+
+.btn03s_0 /*一般按鈕(1~2字)預設時*/
+{	background-color:transparent;
+	background-image:url(../../Images/btnImg/btn01m_0.gif);
+	background-repeat:no-repeat;
+	border:0 solid #FFFFFF; 
+	color:#777777;
+	font:12pt '新細明體';
+	height:20;
+	letter-spacing:1;
+	padding-top:0;
+	text-align:center;
+	text-decoration:none;
+	width:70; 
+}
+
+.btn03s_1 /*一般按鈕(1~2字)滑鼠滑過時*/
+{	background-color:transparent;
+	background-image:url(../../Images/btnImg/btn01m_1.gif);
+	background-repeat:no-repeat;
+	border:0 solid #FFFFFF;
+	color:#FFFF00;
+	font:12pt '新細明體';
+	height:20;
+	letter-spacing:1;
+	padding-top:1;
+	text-decoration:none;
+	text-align:center;
+	width:70; 
+}
+
+.area03	/*申請欄位區域*/
+{	background:#FFFBDC;
+	border-top:2 dashed #FFA800;
+	border-bottom:2 dashed #FFA800;
+	padding:10 0;
+}
+
+
+
+
+
+
+.abort
+{
+    COLOR: red;
+    PADDING-LEFT: 10px
+}
+.info
+{
+    COLOR: green;
+    FONT-FAMILY: Verdana, Arial
+}
+.smalltext
+{
+    COLOR: gray;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 9pt;
+    LINE-HEIGHT: 140%
+}
+TD.StockHeading
+{
+    BORDER-BOTTOM: black 1px inset;
+    BACKGROUND-COLOR: white;
+    COLOR: black;
+    FONT-FAMILY: Tahoma, Arial, Verdana;
+    FONT-SIZE: xx-small;
+    FONT-WEIGHT: bold;
+    PADDING-LEFT: 3pt;
+    PADDING-RIGHT: 0pt
+}
+TD.StockHeadingAmt
+{
+    BORDER-BOTTOM: black 1px inset;
+    BACKGROUND-COLOR: white;
+    COLOR: black;
+    FONT-FAMILY: Tahoma, Arial, Verdana;
+    FONT-SIZE: xx-small;
+    FONT-WEIGHT: bold;
+    PADDING-LEFT: 3pt;
+    PADDING-RIGHT: 0pt;
+    TEXT-ALIGN: right
+}
+TD.StockItem
+{
+    BORDER-RIGHT: silver thin solid;
+    FONT-FAMILY: Tahoma, Arial, Verdana;
+    FONT-SIZE: xx-small;
+    HEIGHT: 14pt;
+    PADDING-LEFT: 3pt;
+    PADDING-RIGHT: 0pt
+}
+TD.StockItemAmt
+{
+    BORDER-RIGHT: silver thin solid;
+	FONT-FAMILY: Tahoma, Arial, Verdana;
+    FONT-SIZE: xx-small;
+    HEIGHT: 14pt;
+    PADDING-LEFT: 3pt;
+    PADDING-RIGHT: 0pt;
+    TEXT-ALIGN: right
+}
+TD.StockSpace
+{
+    BACKGROUND-COLOR: #999999;
+    FONT-FAMILY: Tahoma, Arial;
+    FONT-SIZE: x-small
+}
+TD.StockItemNoBorder
+{
+	BORDER-TOP: #ffffe8 thick solid;
+	BORDER-RIGHT: #FFCC00 thin solid;
+    FONT-FAMILY: Tahoma, Arial, Verdana;
+    FONT-SIZE: xx-small;
+    HEIGHT: 14pt;
+    PADDING-LEFT: 3pt;
+    PADDING-RIGHT: 0pt
+}
+TD.StockItemNoBorderAmt
+{
+	BORDER-TOP: #ffffe8 thick solid;
+	BORDER-RIGHT: #FFCC00 thin solid;	
+    FONT-FAMILY: Tahoma, Arial, Verdana;
+    FONT-SIZE: xx-small;
+    HEIGHT: 14pt;
+    PADDING-LEFT: 3pt;
+    PADDING-RIGHT: 0pt;
+    TEXT-ALIGN: right
+}
+.btn01m_0 /*一般按鈕(3-5字)預設時*/
+{	background-color:transparent;
+	background-image:url(../../Images/btnImg/btn01m_0.gif);
+	background-repeat:no-repeat;
+	border:0 solid #FFFFFF;
+	color:#777777;
+	font:8pt '新細明體';
+	height:20;
+	letter-spacing:1;
+	padding-top:0;
+	text-align:center;
+	width:70;
+}
+.btn01m_1 /*一般按鈕(3-5字)滑鼠滑過時*/
+{	background-color:transparent;
+	background-image:url(../../Images/btnImg/btn01m_1.gif);
+	background-repeat:no-repeat;
+	border:0 solid #FFFFFF;
+	color:#FFFF00;
+	font:8pt '新細明體';
+	letter-spacing:1;
+	height:20;
+	padding-top:1;
+	text-align:center;
+	width:70; 
+}
+SPAN.BulletNumber
+{
+    COLOR: #cc9933;
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: medium;
+    FONT-WEIGHT: bold;
+}
+.button
+{
+    COLOR: #006666;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 15px;
+    FONT-WEIGHT: bold
+}
+.section
+{
+    COLOR: #cc6600;
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 16pt;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-TOP: 5px
+}
+.loginsection
+{
+    COLOR: #ffcc66;
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 16pt;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-TOP: 5px
+}
+H1
+{
+    COLOR: midnightblue;
+    FONT-SIZE: 10pt
+}
+H2
+{
+    COLOR: #cc9933;
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: medium;
+    FONT-WEIGHT: bold;    
+}
+H3
+{
+    COLOR: #cc9933;
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: medium;
+    FONT-WEIGHT: bold;    
+}
+TD.navmenu
+{
+    COLOR: chocolate;
+    CURSOR: default;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: bolder
+}
+
+TD.title
+{
+    BACKGROUND-COLOR: #cccc99;
+    COLOR: #006699;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 16pt;
+    FONT-WEIGHT: bolder;
+    HEIGHT: 30px;
+    LETTER-SPACING: 1pt;
+    PADDING-RIGHT: 20px;
+    TEXT-ALIGN: right
+}
+INPUT
+{
+    FONT-SIZE: 9pt
+}
+TD.menuitemover
+{
+    COLOR: white;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 9pt;
+    PADDING-LEFT: 10px
+}
+TD.menuheading
+{
+	font-weight: bold;
+	font-size: 10pt;
+	cursor: default;
+	color: chocolate;
+	font-style: italic;
+	font-family: Verdana, Arial;
+}
+
+SPAN.error
+{
+	COLOR:red;
+	FONT-FAMILY: Verdana, Arial;
+}
+A
+{
+	font-weight: normal;
+	color: #7A1A7A;/*firebrick*/
+	font-family: Verdana, Arial;
+	text-decoration: none;
+}
+A:visited
+{
+	color: #663333;
+}
+A:active
+{
+	color: lawngreen;
+}
+A:hover
+{
+	font-weight: bold;
+	color: tomato;
+	background-color: #ffffcc;
+}
+A.error
+{
+	COLOR:red;
+    TEXT-DECORATION: none;
+	FONT-FAMILY: Verdana, Arial;
+}
+#error A:visited
+{
+    COLOR: red;
+}
+#error A:active
+{
+    COLOR: red;
+    TEXT-DECORATION: underline;
+}
+#error A:hover
+{
+    COLOR: red;
+    TEXT-DECORATION: underline;
+}
+Table.topmenu TD
+{
+	/*padding-left: 40px;*/
+	font-weight: bold;
+	font-size: 11pt;
+	padding-bottom: 0px;
+	color: red;
+	margin-right: 10px;
+	font-family: Verdana;
+}
+Table.topmenu A
+{
+    COLOR: #000000;
+    TEXT-DECORATION: none;
+}
+Table.topmenu A:visited
+{
+    COLOR: #000000;
+}
+Table.topmenu A:active
+{
+    COLOR: #000000;
+    TEXT-DECORATION: underline;
+}
+Table.topmenu A:hover
+{
+    COLOR: black;
+    TEXT-DECORATION: underline;
+}
+#menu A
+{
+    COLOR: white;
+    TEXT-DECORATION: none;
+}
+#menu A:visited
+{
+    COLOR: white;
+}
+#menu A:active
+{
+    COLOR: #006699;
+    TEXT-DECORATION: underline;
+}
+#menu A:hover
+{
+    COLOR: black;
+    TEXT-DECORATION: underline;
+}
+
+A.menuitem
+{
+    COLOR: black;
+    PADDING-LEFT: 10px;
+    TEXT-ALIGN: right;
+}
+A.menuitem:hover
+{
+    COLOR: #FFCC00;
+    PADDING-LEFT: 10px;
+    TEXT-ALIGN: right;
+}
+
+TD.menuitem
+{
+	padding-left: 10px;
+	font-size: 9pt;
+	color: limegreen;
+	text-align: right;
+}
+
+TD.ColumnHeader
+{
+    BACKGROUND-COLOR: gray;
+    COLOR: white;
+    FONT-FAMILY: Verdana, Arial
+}
+TD.ColumnHeaderAmt
+{
+    BACKGROUND-COLOR: gray;
+    COLOR: white;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-ALIGN: right;
+}
+TD.logo
+{
+    BACKGROUND-COLOR: #006699;
+    BACKGROUND-IMAGE: url(images/FMBanner.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: no-repeat;
+    TEXT-ALIGN: right;
+}
+
+TD.loginBanner
+{
+    BACKGROUND-COLOR: #006699;
+    BACKGROUND-IMAGE: url(images/Login_FMBanner1.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: no-repeat;
+    TEXT-ALIGN: right;
+}
+   
+TD.hundred
+{
+    BACKGROUND-COLOR: #006699;
+    BACKGROUND-IMAGE: url(images/HundredShares.jpg);
+    BACKGROUND-POSITION: right top;
+    BACKGROUND-REPEAT: no-repeat;
+    TEXT-ALIGN: right;
+} 
+
+.DefaultBg
+{
+	BACKGROUND-COLOR: #DCF1F1;
+    BACKGROUND-IMAGE: url(../../images/DefaultBg.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: no-repeat;
+    TEXT-ALIGN: left;
+} 
+
+.BodyBg
+{
+    BACKGROUND-COLOR: #DCF1F1;
+    BACKGROUND-IMAGE: url(../../images/pcc_05.gif);
+    BACKGROUND-POSITION: left top;
+    /*BACKGROUND-REPEAT: repeat-x;*/
+    TEXT-ALIGN: left;
+} 
+
+TD.topLeft1
+{
+    BACKGROUND-IMAGE: url(../../images/pcc_01.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: no-repeat;
+    TEXT-ALIGN: left;
+} 
+
+TD.topLeft2
+{
+    BACKGROUND-IMAGE: url(../../images/pcc_02.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: no-repeat;
+    TEXT-ALIGN: left;
+} 
+TD.topLeft3
+{
+    BACKGROUND-COLOR: #F7FBFF;
+    BACKGROUND-IMAGE: url(../../images/pcc_03.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: repeat-x;
+    TEXT-ALIGN: left;
+} 
+TD.topLeft4
+{
+	BACKGROUND-COLOR: #DCF1F1;
+    BACKGROUND-IMAGE: url(../../images/bg-earth.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: repeat-x;
+    TEXT-ALIGN: left;
+} 
+
+TD.topMiddle
+{
+    BACKGROUND-COLOR: #F7FBFF;
+    BACKGROUND-IMAGE: url(../../images/pcc_03.gif);
+    BACKGROUND-POSITION: left top;
+    BACKGROUND-REPEAT: no-repeat;
+    TEXT-ALIGN: right;
+}
+
+TD.topRight
+{
+    BACKGROUND-COLOR: #F7FBFF;
+    BACKGROUND-IMAGE: url(../../images/pcc_04.gif);
+    BACKGROUND-POSITION: left top;
+    TEXT-ALIGN: left;
+} 
+TD.treebg{BACKGROUND-COLOR: #E6F5F5;}
+
+.ActDocTB
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	border:0;
+	BACKGROUND-COLOR: #000000;
+}
+.ActDocTD1
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	text-indent:8pt;
+	padding-left:2pt;
+	BACKGROUND-COLOR: #eeeeee;
+}
+.ActDocTD2
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	BACKGROUND-COLOR: #aaaadd;
+}
+.ActDocTD3
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	padding-left:2pt;
+	BACKGROUND-COLOR: #ffffff;
+}
+
+.GridTB
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	BACKGROUND-COLOR: #FFFFFF;
+	border:1pt solid #000000;
+}
+
+.DListHeaderTD
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	BACKGROUND-COLOR: #aaaadd;
+}
+.DListItemTD
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	padding-left:2pt;
+	BACKGROUND-COLOR: #ffffff;
+}
+.DListAlternatingTD
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	padding-left:2pt;
+	BACKGROUND-COLOR: #eeeeee;
+}
+.DGridTD
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	padding-left:2pt;
+	padding-right:2pt;
+	padding-bottom:2pt;
+	padding-top:2pt;
+	BACKGROUND-COLOR: #ffffff;
+}
+.GridItem
+{
+	padding-left:5pt;
+	padding-right:5pt;
+	padding-bottom:5pt;
+	padding-top:5pt;
+	line-height:12pt;
+}
+.off
+{
+	display:none
+}
+.TDShowHeader
+{
+	font-size: 8pt;
+	font-family: Verdana;
+	BACKGROUND-COLOR: #FFC3A2;
+}
+.TDShowHeader1
+{
+	font-size: 8pt;
+	font-family: Verdana;
+	BACKGROUND-COLOR: #E6F5F5;
+}
+.TDShowItem
+{
+	font-size: 8pt;
+	font-family: Verdana;
+	padding-left:3pt;
+	padding-right:3pt;
+	padding-bottom:3pt;
+	padding-top:3pt;
+	line-height:10pt;
+	BACKGROUND-COLOR: #ffffff;
+}
+
+.TDShowDiss
+{
+	font-size: 8pt;
+	font-family: Verdana;
+	BACKGROUND-COLOR: #d9e0ee;
+}
+
+.TxtStyle{
+	color: #000000;
+	background: #FFFFFF;
+	border: 1px groove #000000;/*平面solid*/
+	height:20px;
+}
+
+.TextareaStyle {
+	color: #000000;
+	background: #ffffff;
+	border: 1px solid #000000;
+	height:300px;
+	scrollbar-face-color:#C9DBDC;
+	scrollbar-shadow-color:#C3C3C4;
+	scrollbar-highlight-color:#ffffff;
+	scrollbar-3dlight-color:#C3C3C4;
+	scrollbar-darkshadow-color:#ffffff;
+	scrollbar-track-color:#e0e4ff;
+	scrollbar-arrow-color:#ffc575;
+}
+
+A.GridHeaderLink:link {
+	FONT-SIZE: 10pt; LINE-HEIGHT: 15pt; TEXT-DECORATION:none}
+A.GridHeaderLink:visited {
+	FONT-SIZE: 10pt; LINE-HEIGHT: 15pt; TEXT-DECORATION:none}
+A.GridHeaderLink:hover {
+	FONT-SIZE: 10pt; LINE-HEIGHT: 15pt; TEXT-DECORATION: underline}
+A.GridHeaderLink:active {
+	FONT-SIZE: 10pt; LINE-HEIGHT: 15pt; TEXT-DECORATION: underline}
+	
+A.TextLink:link {
+	FONT-SIZE: 9pt; color: #000000; TEXT-DECORATION:none}
+A.TextLink:visited {
+	FONT-SIZE: 9pt; color: #000000; TEXT-DECORATION:none}
+A.TextLink:hover {
+	FONT-SIZE: 9pt; color: #800000; TEXT-DECORATION: underline}
+A.TextLink:active {
+	FONT-SIZE: 9pt; color: #800000; TEXT-DECORATION: underline}
+	
+
+.bfffa00c {	FONT-WEIGHT: bold; BACKGROUND: #ffffff; COLOR: #aa0000; TEXT-ALIGN: center}
+.eee000 {background:#eeeeee}
+.fff000 {BACKGROUND: #ffffff}
+.ffC000 {BACKGROUND: #FFC3A2}
+.ffd000 {BACKGROUND: #fffde3}
+.808000 {BACKGROUND: #808080}
+.f3f000 {BACKGROUND: #F3F3F3}
+.c4c000 {BACKGROUND: #c4c4c4}
+.f2f000 {BACKGROUND: #f2f2f2}
+.CCC000 {BACKGROUND: #CCCCCC}
+.EBE000 {BACKGROUND: #EBEBEB}
+.f8f000 {BACKGROUND: #f8f8f8}
+.DDE000 {BACKGROUND: #D9D9E6}
+.EEF000 {BACKGROUND: #EEEEF5}
+
+.9FC000 {BACKGROUND: #9fc84d}
+.E2F000 {BACKGROUND: #e2fdc7}
+.D5D000 {BACKGROUND: #d5d549}
+.E7E000 {BACKGROUND: #e7e7a4}
+.D9D000 {BACKGROUND: #d9d974}
+.A8B000 {BACKGROUND: #a8b9ed}
+.D3D000 {BACKGROUND: #d3dbf2}
+.BDC000 {BACKGROUND: #bdcbf7}
+.000000 {BACKGROUND: #000000}
+
+
+.FactBG
+{
+	background: url(Images/bg-earth.gif);
+}
+.Button {
+	color: #000000;
+	background: #cccccc;
+	border: 1px solid #000000;
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#FFFFFFFF', EndColorStr='#FFCCCCCC');
+	FONT-SIZE: 9pt;	
+	padding:0 0 0 2pt;
+	font-weight:lighter;
+	font-family:verdana;
+	height:20px;
+	cursor: hand;
+}	
+.border
+{
+	border-right: #015155 1px solid;
+	border-top: #015155 1px solid;
+	border-left: #015155 1px solid;
+	border-bottom: #015155 1px solid;
+}
+
+.MaintainAreaItem {BACKGROUND: #99cccc}
+.MaintainAreaTr {BACKGROUND: #000000}
+.MaintainAreaTd {BACKGROUND: #D5E2E2}
+.MaintainAreaTd1 {BACKGROUND: #DCE2D3}
+
+A.A1:visited
+{
+	color: purple;
+}
+A.A1:active
+{
+	color: lawngreen;
+}
+A.A1:hover
+{
+	font-weight: bold;
+	color: tomato;
+	background-color: #E3E3E3;
+}
+A.A1.error
+{
+	COLOR:red;
+    TEXT-DECORATION: none;
+	FONT-FAMILY: Verdana, Arial;
+}
+
+/* 資料分類標題*/
+.dataTit01
+{	font-family:新細明體;
+	letter-spacing:3pt;
+	text-align:center;
+	font-size:15pt;
+	color:#ffffff;
+	/*width: 140px;
+	height: 24px;
+	position:absolute;*/
+	filter: Glow(Color=#167C99, Strength=3);
+	top: 3;
+	left: 0
+}
+.title
+{	
+	font-size: 14pt;
+	font-family: Verdana;
+	color:Green;
+}
+

@@ -1,0 +1,355 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>萬年歷</title>
+<style>
+<!--
+body           { font-size: 11pt }
+table          { font-size: 9pt }
+td.head        { background-color: #EEEEEE; color: #808080; border-left: 1 solid #FFFFFF; border-right: 1 solid #C0C0C0; border-top: 1 solid #FFFFFF; border-bottom: 1 solid #C0C0C0}
+input.button   { font-size: 9pt; background-color: #D9D9FF; width: 50; height: 19; border-style: outset; border-width: 1; padding-top: 1}
+.mouseover   { border-left: 1 solid #FFFFFF; border-right: 1 solid #C0C0C0; border-top: 1 solid #FFFFFF; border-bottom: 1 solid #C0C0C0 }
+.mousepress  { border-left: 1 solid #C0C0C0; border-right: 1 solid #FFFFFF; border-top: 1 solid #C0C0C0; border-bottom: 1 solid #FFFFFF; padding-left: 2; padding-top: 1 }
+.mouseoverT   { border-left: 1 solid #FFFFFF; border-right: 1 solid #C0C0C0; border-top: 1 solid #FFFFFF; border-bottom: 1 solid #C0C0C0; background-image: url(../../Images/circle.gif); background-repeat: no-repeat; background-position: center 2px}
+.mousepressT  { border-left: 1 solid #C0C0C0; border-right: 1 solid #FFFFFF; border-top: 1 solid #C0C0C0; border-bottom: 1 solid #FFFFFF; padding-left: 2; padding-top: 1; background-image: url(../../Images/circle.gif); background-repeat: no-repeat; background-position: center 2px}
+.T {  background-image: url(../../Images/circle.gif); background-repeat: no-repeat; background-position: center 2px}
+-->
+</style>
+</head>
+
+<body topmargin="0" leftmargin="0" style="border: 2 double #000000" background="../../Images/BACK838.JPG">
+<div id="Title" style="width:280 ;height:35">
+<p><span style="position: relative; left: 50; top: 12; width: 16; height: 16"><img border="0" src="../../Images/arrowl.gif" width="14" height="14" onclick="DateChange(-1)"></span><span style="position: relative; left: 60; top: 10 "> 
+    <select id="months" name="months" style="font-size: 9pt" onfocus="document.activeContral=this;">
+    </select>
+    </span><span style="position: relative; left: 55; top: 10 "> 
+    <select id="years" name="years" style="font-size: 9pt" onfocus="document.activeContral=this;">
+    </select>
+    </span><font color="#7F84E0"><span style="position: relative; left: 55; top: 8 ">年</span></font><span style="position: relative; left: 60; top: 12; width: 16; height: 16"><img border="0" src="../../Images/arrowr.gif" width="14" height="14" onclick="DateChange(1)"></span> 
+  </p>
+</div>
+<table id="Head"  border="0" cellspacing="0" cellpadding="0" width="280" style="cursor:default">
+  <tr height=20 align="center"> 
+    <td class="head" width="14.3%">星期日</td>
+    <td class="head" width="14.3%">星期一</td>
+    <td class="head" width="14.3%">星期二</td>
+    <td class="head" width="14.3%">星期三</td>
+    <td class="head" width="14.3%">星期四</td>
+    <td class="head" width="14.3%">星期五</td>
+    <td class="head" width="14.3%">星期六</td>
+  </tr>
+</table>
+<table id="Panel" border="0" cellspacing="0" cellpadding="0" style="color: #808080; font-family: Arial; cursor:default" width="280">
+  <tr height=20> 
+    <td width="14.3%" valign="middle" align="center"></td>
+    <td width="14.3%" valign="middle" align="center"></td>
+    <td width="14.3%" valign="middle" align="center"></td>
+    <td width="14.3%" valign="middle" align="center"></td>
+    <td width="14.3%" valign="middle" align="center"></td>
+    <td width="14.3%" valign="middle" align="center"></td>
+    <td width="14.3%" valign="middle" align="center">&nbsp;</td>
+  </tr>
+  <tr height=20> 
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+  </tr>
+  <tr height=20> 
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+  </tr>
+  <tr height=20> 
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+  </tr>
+  <tr height=20> 
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+  </tr>
+  <tr height=20> 
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp; </td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+    <td valign="middle" align="center">&nbsp;</td>
+  </tr>
+</table>
+<Script type="text/javascript">
+<!--
+var aWeek=new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六");
+var aMonth=new Array("一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月");
+var aDaysInMonth = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31); 
+var day ; 
+function DateChange(argument)
+{
+	if((al=document.activeContral)==null) return;
+	if(al.id=="months"&&al.tagName=="SELECT")
+		MonthsChange(al,argument);
+	if(al.id=="years"&&al.tagName=="SELECT")
+		YearsChange(al,argument);
+	newCalendar();
+	al.focus();
+}
+function MonthsChange(al,argument)
+{
+		if(al.selectedIndex==0&&argument==-1)
+		{	
+			al.selectedIndex=al.options.length-1;
+			YearsChange(years,-1);
+		}
+		else if(al.selectedIndex==al.options.length-1&&argument==1)
+		{	
+			al.selectedIndex=0;
+			YearsChange(years,1);			
+		}
+		else
+			al.selectedIndex=al.selectedIndex+argument;
+}
+function YearsChange(al,argument)
+{
+		if(al.selectedIndex==0&&argument==-1)
+		{	
+			var objOption=document.createElement("OPTION")
+			al.options.add(objOption,0);
+			objOption.value=parseInt(al.options(1).value)-1;
+			objOption.text=parseInt(al.options(1).text)-1;
+			al.selectedIndex=0;
+		}
+		else if(al.selectedIndex==al.options.length-1&&argument==1)
+		{	
+			var objOption=document.createElement("OPTION")
+			al.options.add(objOption);
+			objOption.value=parseInt(al.options(objOption.index-1).value)+1;
+			objOption.text=parseInt(al.options(objOption.index-1).text)+1;
+			al.selectedIndex=al.options.length-1;
+		}
+		else
+			al.selectedIndex=al.selectedIndex+argument;
+}
+
+function getDays(month, year) 
+{ 
+	if (month==1) 
+		return ((0 == year % 4) && (0 != (year % 100))) || (0 == year % 400) ? 29 : 28; 
+	else 
+		return aDaysInMonth[month]; 
+} 
+function getToday()
+{
+	this.Now=new Date();
+	this.Year=this.Now.getFullYear();
+	this.Month=this.Now.getMonth();
+	this.Day=this.Now.getDate();
+}
+function initSelectArea()
+{
+	for(var i=0;i<aMonth.length;i++)
+	{	
+		var objOption=document.createElement("OPTION");
+		months.options.add(objOption);
+		objOption.innerText=aMonth[i];
+		objOption.value=i;
+	}
+	for(var i=today.Year-50;i<today.Year+50;i++)
+	{
+		var objOption=document.createElement("OPTION");
+		years.options.add(objOption);
+		objOption.innerText=i;
+		objOption.value=i;
+	}
+	months.selectedIndex=today.Month;
+	years.selectedIndex=50;
+	months.attachEvent("onchange",newCalendar);
+	years.attachEvent("onchange",newCalendar);
+}
+function newCalendar()
+{
+	var today=new getToday();
+	var intYear=years[years.selectedIndex].value;
+	var intMonth=months[months.selectedIndex].value;
+	var newCal=new Date(intYear,months.selectedIndex,1);
+	var startDay = newCal.getDay(); 
+	var intDaysInMonth =getDays(newCal.getMonth(), newCal.getFullYear()); 
+	day=-1;
+	if ((today.Year == newCal.getFullYear()) &&(today.Month == newCal.getMonth())) 
+	day = today.Day; 
+	var daily = 0;
+
+	for(var intWeek=0;intWeek<Panel.rows.length;intWeek++)
+	for(var intDay=0;intDay<Panel.rows[intWeek].cells.length;intDay++)
+	{
+		if ((intDay == startDay) && (0 == daily)) 
+			daily = 1;
+		var cell = Panel.rows[intWeek].cells[intDay]; 
+		if(daily>0 && daily<=intDaysInMonth)
+		{	
+			if(day==daily)
+				cell.className="T";
+			else
+				cell.className="";
+			cell.innerText=daily;
+			daily++;
+		}
+		else
+		{
+			cell.className="";
+			cell.innerText="";
+		}
+	}	
+}
+
+function initHead()
+{
+	for(var i=0;i<7;i++)
+	{
+		Head.rows[0].cells[i].innerText=aWeek[i];
+		if(i==0 || i==6)
+			Head.rows[0].cells[i].style.color="#FF9999";
+	}
+	Head.onselectstart=new Function("return false");
+}
+initHead();
+
+function initPanel()
+{
+	Panel.attachEvent("onmouseover",float);
+	Panel.attachEvent("onmouseout",plane);
+	Panel.attachEvent("onmousedown",press);
+	Panel.attachEvent("onmouseup",enter);
+	Panel.attachEvent("onmousemove",float);
+	Panel.onselectstart=new Function("return false");
+	Title.attachEvent("onmouseover",float);
+	Title.attachEvent("onmouseout",plane);
+	Title.attachEvent("onmousedown",press);
+	//Title.attachEvent("onmouseup",enter);
+	Title.attachEvent("onmousemove",float);
+
+}
+
+function float()
+{
+	var el=event.srcElement;
+	if(el.tagName=="TD"&&el.innerText!=""&&event.toElement!=event.fromElement||el.tagName=="IMG")
+	{
+		if(day==el.innerText)
+			T="T";
+		else
+			T="";
+		if(event.button==1)
+			el.className="mousepress"+T;
+		else
+			el.className="mouseover"+T;
+	}
+}
+function plane()
+{
+	var el=event.srcElement;
+	if(el.tagName=="TD"&&el.innerText!=""||el.tagName=="IMG")
+	{
+		if(day==el.innerText)
+			T="T";
+		else
+			T="";
+		el.className=""+T;
+	}
+}
+function press()
+{
+	var el=event.srcElement;
+	if(el.tagName=="TD"&&el.innerText!=""||el.tagName=="IMG")
+	{
+		if(day==el.innerText)
+			T="T";
+		else
+			T="";
+		el.className="mousepress"+T;
+	}
+}
+
+function enter()
+{
+	var el=event.srcElement;
+	if(el.tagName=="TD"&&el.innerText!="")
+	{
+		if(day==el.innerText)
+			T="T";
+		else
+			T="";
+		el.className=""+T;
+		returnDate(el.innerText);
+	}
+}
+function returnDate(day)
+{
+	var year=years.options[years.selectedIndex].text;
+	var month=(parseInt(months.options[months.selectedIndex].value)+1).toString();
+	window.returnValue=FormatDate(year,month,day);	
+	window.close();
+}
+function returnToday()
+{
+	var today=new getToday();
+	window.returnValue=FormatDate(today.Year,(today.Month+1).toString(),(today.Day).toString());
+	window.close();
+}
+function FormatDate(y,m,d)
+{
+	var format=window.dialogArguments ;
+	if(format=="" || typeof(format)!="string")
+		format="YYYY/MM/DD";
+	else
+		format=format.toUpperCase();
+		
+	if((format.lastIndexOf("Y")-format.indexOf("Y"))==3)
+		format=format.replace("YYYY",y);
+	else
+		format=format.replace("YY",y.substr(2,2));
+		
+	var m=(m.length==2)?m:"0"+m;
+	format=format.replace("MM",m);
+	var d=(d.length==2)?d:"0"+d;
+	format=format.replace("DD",d);
+	return format;
+}
+
+function returnClearDay()
+{
+	window.returnValue="";
+	window.close();
+}
+
+var today=new getToday();
+initPanel();
+initHead();
+initSelectArea();
+newCalendar();
+-->
+</Script>
+<div style="position: absolute; z-index: 1; left: 90px; top: 155px"><input type="button" class="button" name="today" value="今天" onClick="returnToday()" ></div>
+<div style="position: absolute; z-index: 1; left: 150px; top: 155px"><input type="button" class="button" name="clearDay" value="清除" onClick="returnClearDay()"></div>
+<div style="position: absolute; z-index: 1; left: 210px; top: 155px"><input type="button" class="button" name="close" value="關閉" onClick="self.close()"></div>
+</body>
+
+</html>

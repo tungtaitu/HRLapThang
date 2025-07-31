@@ -1,0 +1,118 @@
+<%@ Language=VBScript codepage=950%> 
+<!-- #include file = "../../GetSQLServerConnection.fun" --> 
+<!-- #include file="../../ADOINC.inc" --> 
+<%
+
+dat1 = trim(request("dat1"))
+dat2 = trim(request("dat2")) 
+
+D1 = replace(dat1, "/", "" )
+D2 = replace(dat2, "/", "" )   
+
+aidstr = session("netuser") & minute(now())&second(now()) 
+
+Set conn = GetSQLServerConnection()	  
+
+'sqla="delete  worktimeTemps " 
+'conn.execute(sqla)   
+response.write  sqla&"<BR>" 
+'response.end 
+conn.BeginTrans     
+Set fs = CreateObject("Scripting.FileSystemObject")	
+	Set fldr = FS.GetFolder("C:\\SHAREDATA") 
+	'response.end 
+	set theFiles = fldr.files
+	For Each x In theFiles
+		filename = x.name 
+		 			
+ 		'response.write  filename  &"<BR>"
+ 		fnamestr = "C:\SHAREDATA\" & filename
+		'response.write  		fnamestr  &"<BR>"
+ 		Set fileContent = fs.OpenTextFile(fnamestr,1)
+ 		
+ 		'response.write "filename=" & filename  &"<BR>"
+ 		if  trim(filename)="AR.DAT" then 
+ 			xx= 0 
+	 		Do while not fileContent.AtEndOfLine 
+	 			data = fileContent.readline
+	 			wk_LineStr = RTrim(data) 
+				response.write  wk_LineStr &"<BR>"		
+				'xx=xx+1 	 
+				wkdate = mid(wk_LineStr,4,8) 
+				wktime = mid(wk_LineStr,12,6) 
+				empid = mid(wk_LineStr,21,5)  
+				response.write "wkdate=" & wkdate &"<BR>"
+				response.write "wktime=" & wktime &"<BR>"
+				response.write "empid=" & empid &"<BR>"  
+				
+				'if wkdate>=D1 and wkdate<=D2 then 
+				'	sql="select * from empWorkTime where workdat='"& wkdate &"' and empid='"& empid &"' and worktim='"& wktime &"' " 
+					'response.write sql 
+				'	Set rs = Server.CreateObject("ADODB.Recordset")    
+				'	rs.open sql, conn, 3, 3 
+				'	if rs.eof then 
+				'		sql="insert into empWorkTime( empid, workdat , worktim ) values ( "&_
+				'			"'"& empid &"', '"& wkdate &"', '"& wktime &"' ) "  					
+				'		conn.execute(sql) 
+				'	end if  
+				'end if 	 
+				
+				'sqlb="insert into worktimeTemps ( worktims , aid ) values ( '"& wk_LineStr &"', '"& aidstr &"' ) "  
+				'conn.execute(sqlb)  
+				
+				if wkdate = D1 then 				
+					sqlb="insert  into   baocom ( empid, baodat, baotim ) values ( "&_ 
+						 "'"& empid &"', '"& wkdate &"', '"& wktime &"' ) " 
+				 	conn.execute(sqlb)  
+				end if 	
+	 		Loop     
+ 		else
+ 			response.write ""	
+ 		end if 	
+ 		'response.end
+ 		'if mid(trim(filename),3,8)>=D1  and mid(trim(filename),3,8)<=D2 then  			
+
+	 	'end if 	 
+		fileContent.Close  			 		
+ 	NEXT      
+ 	
+
+' response.end 
+
+if conn.Errors.Count = 0 or err.number = 0 then 
+	conn.CommitTrans 	
+	'	Set conn = Nothing 
+	'sqlstr = "exec Ins_empWork '"& D1 &"' , '"& D2 &"' " 	  
+	'response.write sqlstr 
+	'conn.execute(sqlstr)  
+	sqlstr="insert  into   empWorkTime ( empid, workdat, worktim )    "&_
+	   "select substring(worktims, 21, 5)  ,   substring(worktims,4,8)  ,  substring(worktims,12,6)  "&_
+	   "from  (   select worktims  from worktimeTemps  group by worktims   )  a    "&_
+	   "where    substring(worktims, 21, 5) +  substring(worktims,4,8)+ substring(worktims,12,6)  not in (   "&_
+	   "select empid+workdat+worktim  from  empWorkTime  ) " 
+'Response.Write sqlstr 
+'Response.End 
+'conn.execute(sqlstr)      
+ 
+
+%>	
+	<script language=vbs>
+		alert "資料轉入成功!!"
+		'open "accepted.asp", "Fore" 
+		'parent.best.cols="100%,0%"	
+	</script>
+<%
+ELSE
+	conn.RollbackTrans	
+	'Response.Write "A=" & err.number  &"<BR>"
+	'Response.Write "B=" & conn.errors.count &"<BR>"
+	'response.write "C=" & conn.errors.Description &"<BR>"
+%>	<SCRIPT LANGUAGE=VBSCRIPT>
+		ALERT "DATA CommitTrans ERROR !!"
+		OPEN "accepted.asp" , "Fore" 
+		'parent.best.cols="100%,0%"
+	</script>	
+<%	response.end 
+END IF  
+%>
+ 	
